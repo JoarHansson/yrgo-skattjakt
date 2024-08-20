@@ -1,34 +1,52 @@
 "use client";
 
 import "mapbox-gl/dist/mapbox-gl.css";
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useRef, useState } from "react";
 import Map, { GeolocateControl, Marker } from "react-map-gl";
-import mapboxgl from "mapbox-gl";
 
 function MapComponent() {
+  const [userLocation, setUserLocation] = useState<{
+    longitude: number;
+    latitude: number;
+  } | null>(null);
+
   const geoControlRef = useRef<mapboxgl.GeolocateControl>(null);
+  const markerRef = useRef<mapboxgl.Marker>(null);
 
   const getUserCoordinates = () => {
-    geoControlRef.current?.on("geolocate", (e) => {
+    const position = geoControlRef.current?.on("geolocate", (e) => {
       const lon = e.coords.longitude;
       const lat = e.coords.latitude;
       const position = [lon, lat];
       console.log(position);
-      alert(position); // for testing on mobile
+
+      setUserLocation({
+        longitude: e.coords.longitude,
+        latitude: e.coords.latitude,
+      });
     });
   };
 
-  const markerRef = useRef<mapboxgl.Marker>(null);
-
   return (
     <>
+      <div
+        style={{
+          position: "absolute",
+          top: "1rem",
+          left: "1rem",
+          zIndex: 100,
+          color: "white",
+        }}
+      >
+        lon: {userLocation?.longitude} <br />
+        lat: {userLocation?.latitude}
+      </div>
       <Map
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
         initialViewState={{
           longitude: 11.936156,
           latitude: 57.705973,
           zoom: 17,
-          // maxZoom: 20,
         }}
         style={{ position: "absolute", top: 0, bottom: 0, width: "100%" }}
         mapStyle="mapbox://styles/mapbox/dark-v11"
