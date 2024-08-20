@@ -20,10 +20,6 @@ function MapComponent() {
 
   const markerRef = useRef<mapboxgl.Marker>(null);
 
-  const popup = useMemo(() => {
-    return new mapboxgl.Popup().setText("Hello world!");
-  }, []);
-
   return (
     <>
       <Map
@@ -48,7 +44,6 @@ function MapComponent() {
           longitude={11.936151}
           latitude={57.705979}
           color="red"
-          popup={popup}
           ref={markerRef}
         />
       </Map>
