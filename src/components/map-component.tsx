@@ -1,5 +1,6 @@
 "use client";
 
+import "mapbox-gl/dist/mapbox-gl.css";
 import React, { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 
@@ -24,9 +25,20 @@ const MapComponent: React.FC = () => {
         container: mapContainer.current,
         style: "mapbox://styles/mapbox/dark-v11",
         center: [11.936156, 57.705973],
-        zoom: 15,
-        maxZoom: 15,
+        zoom: 17,
+        maxZoom: 20,
       });
+
+      map.addControl(
+        new mapboxgl.GeolocateControl({
+          positionOptions: {
+            enableHighAccuracy: true,
+          },
+          trackUserLocation: true,
+
+          showUserHeading: true,
+        })
+      );
 
       // Add zoom controls
       map.addControl(new mapboxgl.NavigationControl(), "top-left");
