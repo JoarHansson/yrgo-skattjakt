@@ -20,10 +20,8 @@ function MapComponent() {
 
   const markerRef = useRef<mapboxgl.Marker>(null);
 
-  const popup = new mapboxgl.Popup().setText("Hello, world!");
-
-  const togglePopup = useCallback(() => {
-    markerRef.current?.togglePopup();
+  const popup = useMemo(() => {
+    return new mapboxgl.Popup().setText("Hello world!");
   }, []);
 
   return (
