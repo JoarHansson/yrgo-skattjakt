@@ -1,3 +1,5 @@
+import MapComponent from "@/components/map-component";
+
 export default function Home() {
-  return <div>hej</div>;
+  return <MapComponent />;
 }
