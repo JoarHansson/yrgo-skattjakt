@@ -1,61 +1,53 @@
 "use client";
 
 import "mapbox-gl/dist/mapbox-gl.css";
-import React, { useEffect, useRef } from "react";
-import mapboxgl from "mapbox-gl";
+import { useEffect, useRef } from "react";
+import Map, { GeolocateControl, Marker } from "react-map-gl";
 
-interface MovingObject {
-  id: number;
-  name: string;
-  coordinates: number[];
-}
-
-const MapComponent: React.FC = () => {
-  const mapContainer = useRef<HTMLDivElement>(null);
-
-  const movingObjects: MovingObject[] = [
-    // Define your moving objects here
-  ];
+function MapComponent() {
+  const geoControlRef = useRef<mapboxgl.GeolocateControl | null>(null);
 
   useEffect(() => {
-    mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN as string;
+    // Activate as soon as the control is loaded
+    // geoControlRef.current?.trigger();
 
-    if (mapContainer.current) {
-      const map = new mapboxgl.Map({
-        container: mapContainer.current,
-        style: "mapbox://styles/mapbox/dark-v11",
-        center: [11.936156, 57.705973],
-        zoom: 17,
-        maxZoom: 20,
-      });
-
-      map.addControl(
-        new mapboxgl.GeolocateControl({
-          positionOptions: {
-            enableHighAccuracy: true,
-          },
-          trackUserLocation: true,
-
-          showUserHeading: true,
-        })
-      );
-
-      // Add zoom controls
-      map.addControl(new mapboxgl.NavigationControl(), "top-left");
-
-      // Add your custom markers and lines here
-
-      // Clean up on unmount
-      return () => map.remove();
-    }
-  }, []);
+    geoControlRef.current?.on("geolocate", (e) => {
+      const lon = e.coords.longitude;
+      const lat = e.coords.latitude;
+      const position = [lon, lat];
+      console.log(position);
+    });
+  }, [geoControlRef.current]);
 
   return (
-    <div
-      ref={mapContainer}
-      style={{ position: "absolute", top: 0, bottom: 0, width: "100%" }}
-    />
+    <>
+      <Map
+        mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
+        initialViewState={{
+          longitude: 11.936156,
+          latitude: 57.705973,
+          zoom: 17,
+          // maxZoom: 20,
+        }}
+        style={{ position: "absolute", top: 0, bottom: 0, width: "100%" }}
+        mapStyle="mapbox://styles/mapbox/dark-v11"
+      >
+        <GeolocateControl
+          positionOptions={{ enableHighAccuracy: true }}
+          trackUserLocation={true}
+          ref={geoControlRef}
+          // onGeolocate={console.log("hej")}
+        />
+        <Marker
+          longitude={11.936151}
+          latitude={57.705979}
+          color="red"
+          // popup={popup}
+          // ref={markerRef}
+        />
+      </Map>
+    </>
   );
-};
+}
 
 export default MapComponent;
