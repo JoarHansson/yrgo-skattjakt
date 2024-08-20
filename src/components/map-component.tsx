@@ -1,23 +1,32 @@
 "use client";
 
 import "mapbox-gl/dist/mapbox-gl.css";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import Map, { GeolocateControl, Marker } from "react-map-gl";
+import mapboxgl from "mapbox-gl";
 
 function MapComponent() {
-  const geoControlRef = useRef<mapboxgl.GeolocateControl | null>(null);
+  const geoControlRef = useRef<mapboxgl.GeolocateControl>(null);
 
-  useEffect(() => {
-    // Activate as soon as the control is loaded
-    // geoControlRef.current?.trigger();
-
+  const getUserCoordinates = () => {
     geoControlRef.current?.on("geolocate", (e) => {
       const lon = e.coords.longitude;
       const lat = e.coords.latitude;
       const position = [lon, lat];
       console.log(position);
+      alert(position); // for testing on mobile
     });
-  }, [geoControlRef.current]);
+  };
+
+  const markerRef = useRef<mapboxgl.Marker>(null);
+
+  const popup = useMemo(() => {
+    return new mapboxgl.Popup().setText("Hello world!");
+  }, []);
+
+  const togglePopup = useCallback(() => {
+    markerRef.current?.togglePopup();
+  }, []);
 
   return (
     <>
@@ -36,14 +45,15 @@ function MapComponent() {
           positionOptions={{ enableHighAccuracy: true }}
           trackUserLocation={true}
           ref={geoControlRef}
-          // onGeolocate={console.log("hej")}
+          onGeolocate={() => getUserCoordinates()}
+          fitBoundsOptions={{ maxZoom: 17 }}
         />
         <Marker
           longitude={11.936151}
           latitude={57.705979}
           color="red"
-          // popup={popup}
-          // ref={markerRef}
+          popup={popup}
+          ref={markerRef}
         />
       </Map>
     </>
