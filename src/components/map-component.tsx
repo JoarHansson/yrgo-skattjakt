@@ -91,11 +91,10 @@ function MapComponent() {
           onGeolocate={() => getUserCoordinates()}
           fitBoundsOptions={{ maxZoom: 17 }}
         />
-        
+
         {markersData.map((marker) => (
-          <div className="z-30">
+          <div className="z-30" key={marker.id}>
             <Marker
-              key={marker.id}
               longitude={marker.longitude}
               latitude={marker.latitude}
               className="z-40"
@@ -106,17 +105,16 @@ function MapComponent() {
                   className="stroke-blue-500 scale-150 z-50"
                   onClick={() => {
                     console.log(`${marker.name} clicked`);
-                    
-                    setPopupContent({
-                  description: marker.description,
-                  name: marker.name,
-                  image: marker.image,
-                  onClose: () => {
-                    setPopupVisible(false);
-                  },
-                });
-                setPopupVisible(true);
 
+                    setPopupContent({
+                      description: marker.description,
+                      name: marker.name,
+                      image: marker.image,
+                      onClose: () => {
+                        setPopupVisible(false);
+                      },
+                    });
+                    setPopupVisible(true);
                   }}
                 />
               ) : (
@@ -130,9 +128,9 @@ function MapComponent() {
               )}
             </Marker>
           </div>
-
         ))}
       </Map>
+
       {popupVisible && popupContent && (
         <div
           style={{
