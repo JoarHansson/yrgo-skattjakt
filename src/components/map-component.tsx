@@ -8,6 +8,7 @@ import distance from "@turf/distance";
 import markersData from "../markers.json";
 import QuestionMark from "./svg/question-mark";
 import MessagePopup from "./messagePopup";
+import Header from "./header";
 import pirate from "@/content/img.png";
 
 interface MessagePopupProps {
@@ -23,6 +24,8 @@ function MapComponent() {
     latitude: number;
   } | null>(null);
 
+  const [goldCounter, setGoldCounter] = useState(0);
+
   const [clickableMarkers, setClickableMarkers] = useState<number[]>([]);
   const geoControlRef = useRef<mapboxgl.GeolocateControl>(null);
   const markerRef = useRef<mapboxgl.Marker>(null);
@@ -31,6 +34,10 @@ function MapComponent() {
   const [popupContent, setPopupContent] = useState<MessagePopupProps | null>(
     null
   );
+
+  const incrementGoldCounter = () => {
+    setGoldCounter(goldCounter + 10);
+  };
 
   const getUserCoordinates = () => {
     geoControlRef.current?.on("geolocate", (e) => {
@@ -47,13 +54,17 @@ function MapComponent() {
   };
 
   useEffect(() => {
+    console.log(`Gold Counter: ${goldCounter}`);
+  }, [goldCounter]);
+
+  useEffect(() => {
     if (userLocation) {
       const newClickableMarkers = markersData
         .map((marker) => {
           const from = point([userLocation.longitude, userLocation.latitude]);
           const to = point([marker.longitude, marker.latitude]);
           const dist = distance(from, to, { units: "meters" });
-          return dist < 50 ? marker.id : -1; // Adjust the distance threshold as needed (100 meters)
+          return dist < 1000 ? marker.id : -1; // Adjust the distance threshold as needed (100 meters)
         })
         .filter((id) => id !== -1);
       setClickableMarkers(newClickableMarkers);
@@ -71,8 +82,9 @@ function MapComponent() {
           color: "white",
         }}
       >
-        lon: {userLocation?.longitude} <br />
-        lat: {userLocation?.latitude}
+        <Header goldCounter={goldCounter} />
+        {/* lon: {userLocation?.longitude} <br />
+        lat: {userLocation?.latitude} */}
       </div>
       <Map
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
@@ -91,7 +103,7 @@ function MapComponent() {
           onGeolocate={() => getUserCoordinates()}
           fitBoundsOptions={{ maxZoom: 17 }}
         />
-        
+
         {markersData.map((marker) => (
           <div className="z-30">
             <Marker
@@ -106,17 +118,16 @@ function MapComponent() {
                   className="stroke-blue-500 scale-150 z-50"
                   onClick={() => {
                     console.log(`${marker.name} clicked`);
-                    
-                    setPopupContent({
-                  description: marker.description,
-                  name: marker.name,
-                  image: marker.image,
-                  onClose: () => {
-                    setPopupVisible(false);
-                  },
-                });
-                setPopupVisible(true);
 
+                    setPopupContent({
+                      description: marker.description,
+                      name: marker.name,
+                      image: marker.image,
+                      onClose: () => {
+                        setPopupVisible(false);
+                      },
+                    });
+                    setPopupVisible(true);
                   }}
                 />
               ) : (
@@ -130,7 +141,6 @@ function MapComponent() {
               )}
             </Marker>
           </div>
-
         ))}
       </Map>
       {popupVisible && popupContent && (
@@ -149,6 +159,7 @@ function MapComponent() {
             image={popupContent.image}
             onClose={() => {
               setPopupVisible(false);
+              incrementGoldCounter();
             }}
           />
         </div>
