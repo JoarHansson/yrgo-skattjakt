@@ -1,8 +1,11 @@
 "use client";
 
 import "mapbox-gl/dist/mapbox-gl.css";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Map, { GeolocateControl, Marker } from "react-map-gl";
+import { point } from "@turf/helpers";
+import distance from "@turf/distance";
+import markersData from "../markers.json";
 
 function MapComponent() {
   const [userLocation, setUserLocation] = useState<{
@@ -10,6 +13,7 @@ function MapComponent() {
     latitude: number;
   } | null>(null);
 
+  const [clickableMarkers, setClickableMarkers] = useState<number[]>([]);
   const geoControlRef = useRef<mapboxgl.GeolocateControl>(null);
   const markerRef = useRef<mapboxgl.Marker>(null);
 
@@ -26,6 +30,20 @@ function MapComponent() {
       });
     });
   };
+
+  useEffect(() => {
+    if (userLocation) {
+      const newClickableMarkers = markersData
+        .map((marker, index) => {
+          const from = point([userLocation.longitude, userLocation.latitude]);
+          const to = point([marker.longitude, marker.latitude]);
+          const dist = distance(from, to, { units: "meters" });
+          return dist < 100 ? index : -1; // Adjust the distance threshold as needed (100 meters)
+        })
+        .filter((index) => index !== -1);
+      setClickableMarkers(newClickableMarkers);
+    }
+  }, [userLocation]);
 
   return (
     <>
@@ -58,12 +76,21 @@ function MapComponent() {
           onGeolocate={() => getUserCoordinates()}
           fitBoundsOptions={{ maxZoom: 17 }}
         />
-        <Marker
-          longitude={11.936151}
-          latitude={57.705979}
-          color="red"
-          ref={markerRef}
-        />
+        {markersData.map((marker, index) => (
+          <Marker
+            key={index}
+            longitude={marker.longitude}
+            latitude={marker.latitude}
+            color={clickableMarkers.includes(index) ? "blue" : "gray"}
+            onClick={() => {
+              if (clickableMarkers.includes(index)) {
+                console.log(`Marker ${index} clicked`);
+                alert("hej");
+              }
+            }}
+            ref={markerRef}
+          />
+        ))}
       </Map>
     </>
   );
