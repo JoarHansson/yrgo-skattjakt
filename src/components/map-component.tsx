@@ -54,7 +54,7 @@ function MapComponent() {
           const from = point([userLocation.longitude, userLocation.latitude]);
           const to = point([marker.longitude, marker.latitude]);
           const dist = distance(from, to, { units: "meters" });
-          return dist < 50 ? marker.id : -1; // Adjust the distance threshold as needed (100 meters)
+          return dist < 100 ? marker.id : -1; // Adjust the distance threshold as needed (100 meters)
         })
         .filter((id) => id !== -1);
       setClickableMarkers(newClickableMarkers);

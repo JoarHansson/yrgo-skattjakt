@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.mapboxgl-user-location-accuracy-circle {
+  display: none;
+}
