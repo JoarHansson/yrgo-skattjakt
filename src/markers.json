@@ -2,7 +2,7 @@
   {
     "id": 4,
     "name": "Hydrogen Dome of Sweden",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed urna sed quam rutrum feugiat vel non mi. Ut maximus augue et ex finibus, eu cursus neque consectetur. Aenean quis blandit leo. Mauris ut interdum nunc. Phasellus ultrices sodales ullamcorper. Phasellus faucibus convallis ex, vel interdum nisi sagittis sit amet. Mauris molestie laoreet elit id accumsan. Fusce dapibus efficitur dui.",
+    "description": "Dome of Visions är en unik kupolformad byggnad på Lindholmen i Göteborg. Det är en experimentell och hållbar paviljong som fungerar som en mötesplats för samtal och evenemang kring hållbarhet, innovation och framtidens stadsmiljöer. Kupolen, som är tillverkad av trä och transparent plast, skapar en växthusliknande miljö och erbjöd utrymme för konst, kultur och samhällsdiskussioner",
     "image": "image",
     "longitude": 11.937872283728876,
     "latitude": 57.707086102459
@@ -10,7 +10,7 @@
   {
     "id": 5,
     "name": "Di-edersekvensen",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed urna sed quam rutrum feugiat vel non mi. Ut maximus augue et ex finibus, eu cursus neque consectetur. Aenean quis blandit leo. Mauris ut interdum nunc. Phasellus ultrices sodales ullamcorper. Phasellus faucibus convallis ex, vel interdum nisi sagittis sit amet. Mauris molestie laoreet elit id accumsan. Fusce dapibus efficitur dui.",
+    "description": "Di-edersekvensen är ett konstverk på Lindholmen i Göteborg, skapat av den svenska konstnären Linda Persson. Konstverket fungerar som en påminnelse om hur vetenskap och konst kan samverka och inspirera varandra.",
     "image": "image",
     "longitude": 11.93819738174811,
     "latitude": 57.70490146118179
@@ -18,7 +18,7 @@
   {
     "id": 6,
     "name": "Santosskolan",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed urna sed quam rutrum feugiat vel non mi. Ut maximus augue et ex finibus, eu cursus neque consectetur. Aenean quis blandit leo. Mauris ut interdum nunc. Phasellus ultrices sodales ullamcorper. Phasellus faucibus convallis ex, vel interdum nisi sagittis sit amet. Mauris molestie laoreet elit id accumsan. Fusce dapibus efficitur dui.",
+    "description": "Santosskolan på Lindholmen i Göteborg är en skola som fokuserar på att erbjuda en modern och innovativ utbildning för barn och ungdomar i området.Belägen i den dynamiska stadsdelen Lindholmen speglar Santosskolan denna miljö genom att integrera teknik och kreativt lärande i sin undervisning.",
     "image": "image",
     "longitude": 11.932763761626703,
     "latitude": 57.70415502242949
@@ -26,7 +26,7 @@
   {
     "id": 7,
     "name": "Backa teater",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed urna sed quam rutrum feugiat vel non mi. Ut maximus augue et ex finibus, eu cursus neque consectetur. Aenean quis blandit leo. Mauris ut interdum nunc. Phasellus ultrices sodales ullamcorper. Phasellus faucibus convallis ex, vel interdum nisi sagittis sit amet. Mauris molestie laoreet elit id accumsan. Fusce dapibus efficitur dui.",
+    "description": "Backa teater är en konstnärligt fristående del av Göteborgs stadsteater och en av Sveriges ledande barn- och ungdomsteatrar.",
     "image": "image",
     "longitude": 11.936078971997121,
     "latitude": 57.70607529906216
@@ -34,7 +34,7 @@
   {
     "id": 99,
     "name": "Karlatornet",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed urna sed quam rutrum feugiat vel non mi. Ut maximus augue et ex finibus, eu cursus neque consectetur. Aenean quis blandit leo. Mauris ut interdum nunc. Phasellus ultrices sodales ullamcorper. Phasellus faucibus convallis ex, vel interdum nisi sagittis sit amet. Mauris molestie laoreet elit id accumsan. Fusce dapibus efficitur dui.",
+    "description": "Karlatornet är en skyskrapa under uppförande i området Karlastaden i stadsdelen Lindholmen i Göteborg. Karlatornet planeras stå färdigt under 2024 och med sina 246 meter (73 våningar) blir det då Sveriges och Nordens högsta byggnad.",
     "image": "image",
     "longitude": 11.939223332060775,
     "latitude": 57.70984832456096
