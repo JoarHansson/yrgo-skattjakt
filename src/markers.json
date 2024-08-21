@@ -1,26 +1,42 @@
 [
-    {
-      "id": 1,
-      "name": "Marker 1",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed urna sed quam rutrum feugiat vel non mi. Ut maximus augue et ex finibus, eu cursus neque consectetur. Aenean quis blandit leo. Mauris ut interdum nunc. Phasellus ultrices sodales ullamcorper. Phasellus faucibus convallis ex, vel interdum nisi sagittis sit amet. Mauris molestie laoreet elit id accumsan. Fusce dapibus efficitur dui.",      
-      "image": "pirate",
-      "longitude": 11.9365,
-      "latitude": 57.7059
-    },
-    {
-      "id": 2,
-      "name": "Another marker",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed urna sed quam rutrum feugiat vel non mi. Ut maximus augue et ex finibus, eu cursus neque consectetur. Aenean quis blandit leo. Mauris ut interdum nunc. Phasellus ultrices sodales ullamcorper. Phasellus faucibus convallis ex, vel interdum nisi sagittis sit amet. Mauris molestie laoreet elit id accumsan. Fusce dapibus efficitur dui.",      
-      "image": "pirate",
-      "longitude": 11.9361,
-      "latitude": 57.70531
-    },
-    {
-      "id": 3,
-      "name": "Lindholmspiren",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed urna sed quam rutrum feugiat vel non mi. Ut maximus augue et ex finibus, eu cursus neque consectetur. Aenean quis blandit leo. Mauris ut interdum nunc. Phasellus ultrices sodales ullamcorper. Phasellus faucibus convallis ex, vel interdum nisi sagittis sit amet. Mauris molestie laoreet elit id accumsan. Fusce dapibus efficitur dui.",      
-      "image": "image",
-      "longitude": 11.936156,
-      "latitude": 57.705973
-    }
-  ]
+  {
+    "id": 4,
+    "name": "Hydrogen Dome of Sweden",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed urna sed quam rutrum feugiat vel non mi. Ut maximus augue et ex finibus, eu cursus neque consectetur. Aenean quis blandit leo. Mauris ut interdum nunc. Phasellus ultrices sodales ullamcorper. Phasellus faucibus convallis ex, vel interdum nisi sagittis sit amet. Mauris molestie laoreet elit id accumsan. Fusce dapibus efficitur dui.",
+    "image": "image",
+    "longitude": 11.937872283728876,
+    "latitude": 57.707086102459
+  },
+  {
+    "id": 5,
+    "name": "Di-edersekvensen",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed urna sed quam rutrum feugiat vel non mi. Ut maximus augue et ex finibus, eu cursus neque consectetur. Aenean quis blandit leo. Mauris ut interdum nunc. Phasellus ultrices sodales ullamcorper. Phasellus faucibus convallis ex, vel interdum nisi sagittis sit amet. Mauris molestie laoreet elit id accumsan. Fusce dapibus efficitur dui.",
+    "image": "image",
+    "longitude": 11.93819738174811,
+    "latitude": 57.70490146118179
+  },
+  {
+    "id": 6,
+    "name": "Santosskolan",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed urna sed quam rutrum feugiat vel non mi. Ut maximus augue et ex finibus, eu cursus neque consectetur. Aenean quis blandit leo. Mauris ut interdum nunc. Phasellus ultrices sodales ullamcorper. Phasellus faucibus convallis ex, vel interdum nisi sagittis sit amet. Mauris molestie laoreet elit id accumsan. Fusce dapibus efficitur dui.",
+    "image": "image",
+    "longitude": 11.932763761626703,
+    "latitude": 57.70415502242949
+  },
+  {
+    "id": 7,
+    "name": "Backa teater",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed urna sed quam rutrum feugiat vel non mi. Ut maximus augue et ex finibus, eu cursus neque consectetur. Aenean quis blandit leo. Mauris ut interdum nunc. Phasellus ultrices sodales ullamcorper. Phasellus faucibus convallis ex, vel interdum nisi sagittis sit amet. Mauris molestie laoreet elit id accumsan. Fusce dapibus efficitur dui.",
+    "image": "image",
+    "longitude": 11.936078971997121,
+    "latitude": 57.70607529906216
+  },
+  {
+    "id": 99,
+    "name": "Karlatornet",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed urna sed quam rutrum feugiat vel non mi. Ut maximus augue et ex finibus, eu cursus neque consectetur. Aenean quis blandit leo. Mauris ut interdum nunc. Phasellus ultrices sodales ullamcorper. Phasellus faucibus convallis ex, vel interdum nisi sagittis sit amet. Mauris molestie laoreet elit id accumsan. Fusce dapibus efficitur dui.",
+    "image": "image",
+    "longitude": 11.939223332060775,
+    "latitude": 57.70984832456096
+  }
+]

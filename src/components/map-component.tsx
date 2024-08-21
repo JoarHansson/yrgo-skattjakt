@@ -23,6 +23,7 @@ function MapComponent() {
     latitude: number;
   } | null>(null);
 
+  const [finishedMarkers, setFinishedMarkers] = useState<number[]>([]);
   const [clickableMarkers, setClickableMarkers] = useState<number[]>([]);
   const geoControlRef = useRef<mapboxgl.GeolocateControl>(null);
   const markerRef = useRef<mapboxgl.Marker>(null);
@@ -53,12 +54,21 @@ function MapComponent() {
           const from = point([userLocation.longitude, userLocation.latitude]);
           const to = point([marker.longitude, marker.latitude]);
           const dist = distance(from, to, { units: "meters" });
-          return dist < 50 ? marker.id : -1; // Adjust the distance threshold as needed (100 meters)
+          return dist < 100 ? marker.id : -1; // Adjust the distance threshold as needed (100 meters)
         })
         .filter((id) => id !== -1);
       setClickableMarkers(newClickableMarkers);
     }
   }, [userLocation]);
+
+  const handleMarkerClick = (markerId: number) => {
+    if (!finishedMarkers.includes(markerId)) {
+      setFinishedMarkers((prevFinishedMarkers) => [
+        ...prevFinishedMarkers,
+        markerId,
+      ]);
+    }
+  };
 
   return (
     <>
@@ -100,32 +110,47 @@ function MapComponent() {
               className="z-40"
               ref={markerRef}
             >
-              {clickableMarkers.includes(marker.id) ? (
+              {finishedMarkers.includes(marker.id) && (
                 <QuestionMark
-                  className="stroke-blue-500 scale-150 z-50"
+                  className="stroke-green-500 scale-150 z-50"
                   onClick={() => {
                     console.log(`${marker.name} clicked`);
-
-                    setPopupContent({
-                      description: marker.description,
-                      name: marker.name,
-                      image: marker.image,
-                      onClose: () => {
-                        setPopupVisible(false);
-                      },
-                    });
-                    setPopupVisible(true);
-                  }}
-                />
-              ) : (
-                <QuestionMark
-                  className="stroke-slate-50 scale-150 z-50"
-                  onClick={() => {
-                    console.log(`${marker.name} clicked`);
-                    alert("access denied. come closer.");
+                    alert("already completed.");
                   }}
                 />
               )}
+
+              {clickableMarkers.includes(marker.id) &&
+                !finishedMarkers.includes(marker.id) && (
+                  <QuestionMark
+                    className="stroke-blue-500 scale-150 z-50"
+                    onClick={() => {
+                      console.log(`${marker.name} clicked`);
+                      setPopupVisible(true);
+
+                      setPopupContent({
+                        description: marker.description,
+                        name: marker.name,
+                        image: marker.image,
+                        onClose: () => {
+                          setPopupVisible(false);
+                          handleMarkerClick(marker.id);
+                        },
+                      });
+                    }}
+                  />
+                )}
+
+              {!clickableMarkers.includes(marker.id) &&
+                !finishedMarkers.includes(marker.id) && (
+                  <QuestionMark
+                    className="stroke-slate-50 scale-150 z-50"
+                    onClick={() => {
+                      console.log(`${marker.name} clicked`);
+                      alert("access denied. come closer.");
+                    }}
+                  />
+                )}
             </Marker>
           </div>
         ))}
@@ -145,9 +170,7 @@ function MapComponent() {
             description={popupContent.description}
             name={popupContent.name}
             image={popupContent.image}
-            onClose={() => {
-              setPopupVisible(false);
-            }}
+            onClose={popupContent.onClose}
           />
         </div>
       )}
