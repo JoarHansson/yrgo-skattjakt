@@ -8,6 +8,7 @@ import distance from "@turf/distance";
 import markersData from "../markers.json";
 import QuestionMark from "./svg/question-mark";
 import MessagePopup from "./messagePopup";
+import Header from "./header";
 import pirate from "@/content/img.png";
 
 interface MessagePopupProps {
@@ -23,7 +24,10 @@ function MapComponent() {
     latitude: number;
   } | null>(null);
 
+
+  const [goldCounter, setGoldCounter] = useState(0);
   const [finishedMarkers, setFinishedMarkers] = useState<number[]>([]);
+
   const [clickableMarkers, setClickableMarkers] = useState<number[]>([]);
   const geoControlRef = useRef<mapboxgl.GeolocateControl>(null);
   const markerRef = useRef<mapboxgl.Marker>(null);
@@ -32,6 +36,10 @@ function MapComponent() {
   const [popupContent, setPopupContent] = useState<MessagePopupProps | null>(
     null
   );
+
+  const incrementGoldCounter = () => {
+    setGoldCounter(goldCounter + 10);
+  };
 
   const getUserCoordinates = () => {
     geoControlRef.current?.on("geolocate", (e) => {
@@ -48,6 +56,10 @@ function MapComponent() {
   };
 
   useEffect(() => {
+    console.log(`Gold Counter: ${goldCounter}`);
+  }, [goldCounter]);
+
+  useEffect(() => {
     if (userLocation) {
       const newClickableMarkers = markersData
         .map((marker) => {
@@ -55,6 +67,7 @@ function MapComponent() {
           const to = point([marker.longitude, marker.latitude]);
           const dist = distance(from, to, { units: "meters" });
           return dist < 100 ? marker.id : -1; // Adjust the distance threshold as needed (100 meters)
+
         })
         .filter((id) => id !== -1);
       setClickableMarkers(newClickableMarkers);
@@ -81,8 +94,9 @@ function MapComponent() {
           color: "white",
         }}
       >
-        lon: {userLocation?.longitude} <br />
-        lat: {userLocation?.latitude}
+        <Header goldCounter={goldCounter} />
+        {/* lon: {userLocation?.longitude} <br />
+        lat: {userLocation?.latitude} */}
       </div>
       <Map
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
@@ -116,6 +130,7 @@ function MapComponent() {
                   onClick={() => {
                     console.log(`${marker.name} clicked`);
                     alert("already completed.");
+
                   }}
                 />
               )}
@@ -135,6 +150,7 @@ function MapComponent() {
                         onClose: () => {
                           setPopupVisible(false);
                           handleMarkerClick(marker.id);
+                          incrementGoldCounter();
                         },
                       });
                     }}
@@ -170,6 +186,7 @@ function MapComponent() {
             description={popupContent.description}
             name={popupContent.name}
             image={popupContent.image}
+          
             onClose={popupContent.onClose}
           />
         </div>
