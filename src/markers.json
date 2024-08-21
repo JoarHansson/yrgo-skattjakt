@@ -1,14 +1,27 @@
 [
     {
+      "id": 1,
       "name": "Marker 1",
-      "description": "This is the first marker.",
-      "longitude": 11.936156,
-      "latitude": 57.705973
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed urna sed quam rutrum feugiat vel non mi. Ut maximus augue et ex finibus, eu cursus neque consectetur. Aenean quis blandit leo. Mauris ut interdum nunc. Phasellus ultrices sodales ullamcorper. Phasellus faucibus convallis ex, vel interdum nisi sagittis sit amet. Mauris molestie laoreet elit id accumsan. Fusce dapibus efficitur dui.",      
+      "image": "pirate",
+      "longitude": 11.9365,
+      "latitude": 57.7059
     },
     {
+      "id": 2,
+      "name": "Another marker",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed urna sed quam rutrum feugiat vel non mi. Ut maximus augue et ex finibus, eu cursus neque consectetur. Aenean quis blandit leo. Mauris ut interdum nunc. Phasellus ultrices sodales ullamcorper. Phasellus faucibus convallis ex, vel interdum nisi sagittis sit amet. Mauris molestie laoreet elit id accumsan. Fusce dapibus efficitur dui.",      
+      "image": "pirate",
+      "longitude": 11.9361,
+      "latitude": 57.70531
+    },
+    {
+      "id": 3,
       "name": "Lindholmspiren",
-      "description": "På lindholmspiren finns bla...",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed urna sed quam rutrum feugiat vel non mi. Ut maximus augue et ex finibus, eu cursus neque consectetur. Aenean quis blandit leo. Mauris ut interdum nunc. Phasellus ultrices sodales ullamcorper. Phasellus faucibus convallis ex, vel interdum nisi sagittis sit amet. Mauris molestie laoreet elit id accumsan. Fusce dapibus efficitur dui.",      
+      "image": "image",
       "longitude": 11.936156,
       "latitude": 57.705973
     }
   ]
+  
