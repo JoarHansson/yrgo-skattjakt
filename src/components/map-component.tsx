@@ -6,6 +6,7 @@ import Map, { GeolocateControl, Marker } from "react-map-gl";
 import { point } from "@turf/helpers";
 import distance from "@turf/distance";
 import markersData from "../markers.json";
+import QuestionMark from "./svg/question-mark";
 
 function MapComponent() {
   const [userLocation, setUserLocation] = useState<{
@@ -18,7 +19,7 @@ function MapComponent() {
   const markerRef = useRef<mapboxgl.Marker>(null);
 
   const getUserCoordinates = () => {
-    const position = geoControlRef.current?.on("geolocate", (e) => {
+    geoControlRef.current?.on("geolocate", (e) => {
       const lon = e.coords.longitude;
       const lat = e.coords.latitude;
       const position = [lon, lat];
@@ -34,13 +35,13 @@ function MapComponent() {
   useEffect(() => {
     if (userLocation) {
       const newClickableMarkers = markersData
-        .map((marker, index) => {
+        .map((marker) => {
           const from = point([userLocation.longitude, userLocation.latitude]);
           const to = point([marker.longitude, marker.latitude]);
           const dist = distance(from, to, { units: "meters" });
-          return dist < 100 ? index : -1; // Adjust the distance threshold as needed (100 meters)
+          return dist < 50 ? marker.id : -1; // Adjust the distance threshold as needed (100 meters)
         })
-        .filter((index) => index !== -1);
+        .filter((id) => id !== -1);
       setClickableMarkers(newClickableMarkers);
     }
   }, [userLocation]);
@@ -76,20 +77,34 @@ function MapComponent() {
           onGeolocate={() => getUserCoordinates()}
           fitBoundsOptions={{ maxZoom: 17 }}
         />
-        {markersData.map((marker, index) => (
-          <Marker
-            key={index}
-            longitude={marker.longitude}
-            latitude={marker.latitude}
-            color={clickableMarkers.includes(index) ? "blue" : "gray"}
-            onClick={() => {
-              if (clickableMarkers.includes(index)) {
-                console.log(`Marker ${index} clicked`);
-                alert("hej");
-              }
-            }}
-            ref={markerRef}
-          />
+        {markersData.map((marker) => (
+          <div className="z-30">
+            <Marker
+              key={marker.id}
+              longitude={marker.longitude}
+              latitude={marker.latitude}
+              className="z-40"
+              ref={markerRef}
+            >
+              {clickableMarkers.includes(marker.id) ? (
+                <QuestionMark
+                  className="stroke-blue-500 scale-150 z-50"
+                  onClick={() => {
+                    console.log(`${marker.name} clicked`);
+                    alert("hej");
+                  }}
+                />
+              ) : (
+                <QuestionMark
+                  className="stroke-slate-50 scale-150 z-50"
+                  onClick={() => {
+                    console.log(`${marker.name} clicked`);
+                    alert("access denied. come closer.");
+                  }}
+                />
+              )}
+            </Marker>
+          </div>
         ))}
       </Map>
     </>

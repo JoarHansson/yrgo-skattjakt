@@ -1,14 +1,23 @@
 [
-    {
-      "name": "Marker 1",
-      "description": "This is the first marker.",
-      "longitude": 11.936156,
-      "latitude": 57.705973
-    },
-    {
-      "name": "Lindholmspiren",
-      "description": "På lindholmspiren finns bla...",
-      "longitude": 11.936156,
-      "latitude": 57.705973
-    }
-  ]
+  {
+    "id": 1,
+    "name": "Marker 1",
+    "description": "This is the first marker.",
+    "longitude": 11.9365,
+    "latitude": 57.7059
+  },
+  {
+    "id": 2,
+    "name": "Another marker",
+    "description": "This is the second marker.",
+    "longitude": 11.9361,
+    "latitude": 57.70531
+  },
+  {
+    "id": 3,
+    "name": "Lindholmspiren",
+    "description": "På lindholmspiren finns bla...",
+    "longitude": 11.936156,
+    "latitude": 57.705973
+  }
+]
