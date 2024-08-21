@@ -7,6 +7,15 @@ import { point } from "@turf/helpers";
 import distance from "@turf/distance";
 import markersData from "../markers.json";
 import QuestionMark from "./svg/question-mark";
+import MessagePopup from "./messagePopup";
+import pirate from "@/content/img.png";
+
+interface MessagePopupProps {
+  description: string;
+  name: string;
+  image: string;
+  onClose: () => void;
+}
 
 function MapComponent() {
   const [userLocation, setUserLocation] = useState<{
@@ -17,6 +26,11 @@ function MapComponent() {
   const [clickableMarkers, setClickableMarkers] = useState<number[]>([]);
   const geoControlRef = useRef<mapboxgl.GeolocateControl>(null);
   const markerRef = useRef<mapboxgl.Marker>(null);
+
+  const [popupVisible, setPopupVisible] = useState(false);
+  const [popupContent, setPopupContent] = useState<MessagePopupProps | null>(
+    null
+  );
 
   const getUserCoordinates = () => {
     geoControlRef.current?.on("geolocate", (e) => {
@@ -77,6 +91,7 @@ function MapComponent() {
           onGeolocate={() => getUserCoordinates()}
           fitBoundsOptions={{ maxZoom: 17 }}
         />
+        
         {markersData.map((marker) => (
           <div className="z-30">
             <Marker
@@ -91,7 +106,17 @@ function MapComponent() {
                   className="stroke-blue-500 scale-150 z-50"
                   onClick={() => {
                     console.log(`${marker.name} clicked`);
-                    alert("hej");
+                    
+                    setPopupContent({
+                  description: marker.description,
+                  name: marker.name,
+                  image: marker.image,
+                  onClose: () => {
+                    setPopupVisible(false);
+                  },
+                });
+                setPopupVisible(true);
+
                   }}
                 />
               ) : (
@@ -105,8 +130,29 @@ function MapComponent() {
               )}
             </Marker>
           </div>
+
         ))}
       </Map>
+      {popupVisible && popupContent && (
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            zIndex: 200,
+          }}
+        >
+          <MessagePopup
+            description={popupContent.description}
+            name={popupContent.name}
+            image={popupContent.image}
+            onClose={() => {
+              setPopupVisible(false);
+            }}
+          />
+        </div>
+      )}
     </>
   );
 }
