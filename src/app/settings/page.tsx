@@ -1,11 +1,11 @@
 import UserSettings from "@/components/user-settings";
 import Link from "next/link";
 
-export default function Home() {
+export default function SettingsPage() {
   return (
     <>
-      <h1>Skattjakten på Lindholmen</h1>
-      <Link href={"/welcome"} className="underline">
+      <UserSettings />
+      <Link href={"/map"} className="underline">
         vidare
       </Link>
     </>
