@@ -18,7 +18,7 @@ export default function Home() {
           className="mx-auto max-w-sm px-8 "
         />
         <div className="w-[292px] pb-16 bg-cardDarker mx-auto -my-12 rounded-lg pt-16 px-4">
-          <h1 className="m-auto text-center">Skattjakten</h1>
+          <h1 className="m-auto text-center heading">Skattjakten</h1>
           <h1 className="m-auto text-center">på</h1>
           <h1 className="m-auto text-center">Lindholmen</h1>
         </div>
