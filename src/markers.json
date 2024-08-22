@@ -42,16 +42,5 @@
     "icon": "Storyicon",
     "longitude": 11.936078971997121,
     "latitude": 57.70607529906216
-  },
-  {
-    "id": 99,
-    "name": "Karlatornet",
-    "storyline" : "text som beskriver",
-    "description": "Karlatornet är en skyskrapa under uppförande i området Karlastaden i stadsdelen Lindholmen i Göteborg. Karlatornet planeras stå färdigt under 2024 och med sina 246 meter (73 våningar) blir det då Sveriges och Nordens högsta byggnad.",
-    "congratsMessage": "bra jobbat +1 energi",
-    "image": "Seal",
-    "icon": "Storyicon",
-    "longitude": 11.939223332060775,
-    "latitude": 57.70984832456096
   }
 ]

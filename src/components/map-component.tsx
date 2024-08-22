@@ -6,12 +6,15 @@ import Map, { GeolocateControl, Marker } from "react-map-gl";
 import { point } from "@turf/helpers";
 import distance from "@turf/distance";
 import markersData from "../markers.json";
+import KarlatornetData from "@/karlatornet.json";
 import QuestionMark from "./svg/question-mark";
-import MessagePopup from "./messagePopup";
+import MessagePopup from "../components/messagePopup";
 import Header from "./header";
 import missionData from "../missions.json";
 import MissionPopup from "./missionPopup";
 import { useToast } from "@/components/ui/use-toast";
+import KarlatornetLight from "@/content/tower_light.png";
+import KarlatornetPopup from "../components/karlatornetPopup";
 
 interface MessagePopupProps {
   congratsMessage: string;
@@ -24,7 +27,7 @@ interface MessagePopupProps {
 }
 
 interface PopupContentProps extends MessagePopupProps {
-  type: "marker" | "mission";
+  type: "marker" | "mission" | "Karlatornet";
 }
 
 function shuffleArray(array: any[]) {
@@ -141,6 +144,10 @@ function MapComponent() {
         missionId,
       ]);
     }
+  };
+
+  const isKarlatornetClickable = () => {
+    return true;
   };
 
   const { toast } = useToast();
@@ -291,6 +298,48 @@ function MapComponent() {
             </Marker>
           </div>
         ))}
+        <Marker
+          longitude={KarlatornetData[0].longitude}
+          latitude={KarlatornetData[0].latitude}
+          className="z-40"
+          ref={markerRef}
+        >
+          {isKarlatornetClickable() ? (
+            <img
+              src={KarlatornetLight.src}
+              width={100}
+              alt={KarlatornetData[0].name}
+              className="custom-marker-image"
+              onClick={() => {
+                setPopupVisible(true);
+                setPopupContent({
+                  description: KarlatornetData[0].description,
+                  storyline: KarlatornetData[0].storyline,
+                  congratsMessage: KarlatornetData[0].congratsMessage,
+                  name: KarlatornetData[0].name,
+                  characterImage: KarlatornetData[0].image,
+                  icon: KarlatornetData[0].icon,
+                  onClose: () => {
+                    setPopupVisible(false);
+                    handleMarkerClick(KarlatornetData[0].id);
+                    incrementGoldCounter();
+                  },
+                  type: "Karlatornet",
+                });
+              }}
+            />
+          ) : (
+            <QuestionMark
+              className="stroke-red-50 scale-150 z-50"
+              onClick={() => {
+                toast({
+                  description:
+                    "Du måste fortsätta samla Piratmod inna du vågar dig på Karlatornet",
+                });
+              }}
+            />
+          )}
+        </Marker>
       </Map>
       {popupVisible && popupContent && (
         <div
@@ -312,7 +361,7 @@ function MapComponent() {
               icon={popupContent.icon}
               onClose={popupContent.onClose}
             />
-          ) : (
+          ) : popupContent.type === "mission" ? (
             <MissionPopup
               congratsMessage={popupContent.congratsMessage}
               storyline={popupContent.storyline}
@@ -322,7 +371,17 @@ function MapComponent() {
               icon={popupContent.icon}
               onClose={popupContent.onClose}
             />
-          )}
+          ) : popupContent.type === "Karlatornet" ? (
+            <KarlatornetPopup
+              congratsMessage={popupContent.congratsMessage}
+              storyline={popupContent.storyline}
+              description={popupContent.description}
+              name={popupContent.name}
+              characterImage={popupContent.characterImage}
+              icon={popupContent.icon}
+              onClose={popupContent.onClose}
+            />
+          ) : null}
         </div>
       )}
     </>
