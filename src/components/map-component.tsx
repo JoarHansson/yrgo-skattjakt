@@ -9,12 +9,11 @@ import markersData from "../markers.json";
 import QuestionMark from "./svg/question-mark";
 import MessagePopup from "./messagePopup";
 import Header from "./header";
-import pirate from "@/content/img.png";
 
 interface MessagePopupProps {
   description: string;
   name: string;
-  image: string;
+  characterImage: string; // Add the characterImage property
   onClose: () => void;
 }
 
@@ -23,7 +22,6 @@ function MapComponent() {
     longitude: number;
     latitude: number;
   } | null>(null);
-
 
   const [goldCounter, setGoldCounter] = useState(0);
   const [finishedMarkers, setFinishedMarkers] = useState<number[]>([]);
@@ -66,8 +64,7 @@ function MapComponent() {
           const from = point([userLocation.longitude, userLocation.latitude]);
           const to = point([marker.longitude, marker.latitude]);
           const dist = distance(from, to, { units: "meters" });
-          return dist < 100 ? marker.id : -1; // Adjust the distance threshold as needed (100 meters)
-
+          return dist < 1000 ? marker.id : -1; // Adjust the distance threshold as needed (100 meters)
         })
         .filter((id) => id !== -1);
       setClickableMarkers(newClickableMarkers);
@@ -130,7 +127,6 @@ function MapComponent() {
                   onClick={() => {
                     console.log(`${marker.name} clicked`);
                     alert("already completed.");
-
                   }}
                 />
               )}
@@ -146,7 +142,7 @@ function MapComponent() {
                       setPopupContent({
                         description: marker.description,
                         name: marker.name,
-                        image: marker.image,
+                        characterImage: marker.image,
                         onClose: () => {
                           setPopupVisible(false);
                           handleMarkerClick(marker.id);
@@ -185,8 +181,7 @@ function MapComponent() {
           <MessagePopup
             description={popupContent.description}
             name={popupContent.name}
-            image={popupContent.image}
-          
+            characterImage={popupContent.characterImage}
             onClose={popupContent.onClose}
           />
         </div>
