@@ -5,6 +5,8 @@ import { createContext, useState } from "react";
 interface UserSettings {
   name: string;
   avatar: string;
+  coins: number;
+  energy: number;
 }
 
 interface UserContextType {
@@ -22,8 +24,10 @@ export default function UserSettingsProvider({
   children: React.ReactNode;
 }) {
   const [userSettings, setUserSettings] = useState<UserSettings>({
-    name: "",
-    avatar: "",
+    name: "Pirat",
+    avatar: "Avatar1",
+    coins: 0,
+    energy: 0,
   });
 
   return (
