@@ -4,6 +4,9 @@ import "./globals.css";
 import UserSettingsProvider from "./user-settings-provider";
 import { Toaster } from "@/components/ui/toaster";
 
+import { cn } from "@/lib/utils";
+
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={cn(inter.className, "bg-introBg")}>
         <UserSettingsProvider>{children}</UserSettingsProvider>
         <Toaster />
       </body>
