@@ -2,8 +2,10 @@
     {
       "id": 10,
       "name": "Bomb",
-      "description": "Bomb",
-      "image": "Croc",
+      "storyline" : "text som beskriver",
+      "description": "Ånej! Du hittade precis en bomb och förlorade 5 guld!",
+      "congratsMessage": "-5 guld från din spargris",
+      "image": "Bomb",
       "icon" : "Bomb",
       "coins": -5,
       "longitude": 11.938185,
@@ -12,7 +14,9 @@
     {
       "id": 12,
       "name": "Uppdrag",
+      "storyline" : "text som beskriver",
       "description": "Gör abc",
+      "congratsMessage": "bra jobbat +1 energi",
       "coins": 10,
       "image": "Croc",
       "icon" : "Moneybag",
@@ -22,7 +26,9 @@
     {
       "id": 14,
       "name": "Uppdrag",
+      "storyline" : "text som beskriver",
       "description": "Gör DEF",
+      "congratsMessage": "bra jobbat +1 energi",
       "coins": 10,
       "image": "Croc",
       "icon" : "Moneybag",
