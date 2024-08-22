@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Gelasio, Inknut_Antiqua } from "next/font/google";
 import "./globals.css";
 import UserSettingsProvider from "./user-settings-provider";
 import { Toaster } from "@/components/ui/toaster";
 
 import { cn } from "@/lib/utils";
 
-
-const inter = Inter({ subsets: ["latin"] });
+const gelasio = Gelasio({ subsets: ["latin"] });
+const inknut = Inknut_Antiqua({ subsets: ["latin"], weight: "700" });
 
 export const metadata: Metadata = {
   title: "Yrgo Skattjakt",
@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, "bg-introBg")}>
+      <body className={cn(gelasio.className, "bg-introBg")}>
         <UserSettingsProvider>{children}</UserSettingsProvider>
         <Toaster />
       </body>

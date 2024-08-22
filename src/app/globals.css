@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -73,7 +72,39 @@
   display: none;
 }
 
-body, html {
+body,
+html {
   overflow: hidden;
 }
 
+/* font settings */
+@import url("https://fonts.googleapis.com/css2?family=Gelasio&family=Inknut+Antiqua:wght@700&display=swap");
+
+.font-gelasio {
+  font-family: "Gelasio", serif;
+}
+
+.font-inknut {
+  font-family: "Inknut Antiqua", serif;
+}
+
+/* our 5 fonts: */
+.heading {
+  @apply font-inknut text-[31px] font-bold;
+}
+
+.paragraph {
+  @apply font-gelasio text-[21px] font-normal;
+}
+
+.paragraph-bold {
+  @apply font-gelasio text-[21px] font-semibold;
+}
+
+.instruction {
+  @apply font-gelasio text-[19px] font-semibold;
+}
+
+.instruction-large {
+  @apply font-gelasio text-[21px] font-semibold;
+}
