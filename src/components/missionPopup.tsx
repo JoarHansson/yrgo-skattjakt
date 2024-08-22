@@ -29,7 +29,7 @@ interface MessagePopupProps {
   onClose: () => void;
 }
 
-export default function MessagePopup({
+export default function MissionPopup({
   description,
   name,
   characterImage,
@@ -41,9 +41,8 @@ export default function MessagePopup({
   const iconImgSrc = imageMap[icon as keyof typeof imageMap].src;
 
   return (
-    <div className="w-screen h-screen bg-cyan-300 flex justify-center items-center flex-col">
-      <img src={iconImgSrc} width={100} alt="Icon" className="absolute top-4" />
-      <img src={Scroll.src} alt="" className="absolute top-28" />
+    <div className="w-screen h-screen bg-cyan-300 flex justify-center items-center">
+      <img src={Scroll.src} alt="" className="absolute top-24" />
       <img
         src={characterImgSrc}
         width={140}

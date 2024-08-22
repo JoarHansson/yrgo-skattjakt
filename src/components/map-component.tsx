@@ -9,11 +9,13 @@ import markersData from "../markers.json";
 import QuestionMark from "./svg/question-mark";
 import MessagePopup from "./messagePopup";
 import Header from "./header";
+import missionData from "../missions.json";
 
 interface MessagePopupProps {
   description: string;
   name: string;
-  characterImage: string; // Add the characterImage property
+  characterImage: string;
+  icon: string;
   onClose: () => void;
 }
 
@@ -23,12 +25,19 @@ function MapComponent() {
     latitude: number;
   } | null>(null);
 
+  useEffect(() => {
+    console.log("Mission Data:", missionData);
+  }, []);
+
   const [goldCounter, setGoldCounter] = useState(0);
   const [finishedMarkers, setFinishedMarkers] = useState<number[]>([]);
+  const [finishedMissions, setFinishedMissions] = useState<number[]>([]);
 
+  const [clickableMissions, setClickableMissions] = useState<number[]>([]);
   const [clickableMarkers, setClickableMarkers] = useState<number[]>([]);
   const geoControlRef = useRef<mapboxgl.GeolocateControl>(null);
   const markerRef = useRef<mapboxgl.Marker>(null);
+  const missionRef = useRef<mapboxgl.Marker>(null);
 
   const [popupVisible, setPopupVisible] = useState(false);
   const [popupContent, setPopupContent] = useState<MessagePopupProps | null>(
@@ -59,6 +68,8 @@ function MapComponent() {
 
   useEffect(() => {
     if (userLocation) {
+      console.log("User Location:", userLocation);
+
       const newClickableMarkers = markersData
         .map((marker) => {
           const from = point([userLocation.longitude, userLocation.latitude]);
@@ -68,14 +79,39 @@ function MapComponent() {
         })
         .filter((id) => id !== -1);
       setClickableMarkers(newClickableMarkers);
+
+      const newClickableMissions = missionData
+        .map((mission) => {
+          const from = point([userLocation.longitude, userLocation.latitude]);
+          const to = point([mission.longitude, mission.latitude]);
+          const dist = distance(from, to, { units: "meters" });
+          console.log(`Distance to mission ${mission.id}:`, dist);
+          return dist < 1000 ? mission.id : -1; // Adjust the distance threshold as needed (100 meters)
+        })
+        .filter((id) => id !== -1);
+      setClickableMissions(newClickableMissions);
     }
   }, [userLocation]);
+
+  useEffect(() => {
+    console.log("Clickable Missions:", clickableMissions);
+    console.log("Clickable markers:", clickableMarkers);
+  }, [clickableMissions]);
 
   const handleMarkerClick = (markerId: number) => {
     if (!finishedMarkers.includes(markerId)) {
       setFinishedMarkers((prevFinishedMarkers) => [
         ...prevFinishedMarkers,
         markerId,
+      ]);
+    }
+  };
+
+  const handleMissionClick = (missionId: number) => {
+    if (!finishedMissions.includes(missionId)) {
+      setFinishedMissions((prevFinishedMissions) => [
+        ...prevFinishedMissions,
+        missionId,
       ]);
     }
   };
@@ -143,6 +179,7 @@ function MapComponent() {
                         description: marker.description,
                         name: marker.name,
                         characterImage: marker.image,
+                        icon: marker.icon,
                         onClose: () => {
                           setPopupVisible(false);
                           handleMarkerClick(marker.id);
@@ -166,6 +203,60 @@ function MapComponent() {
             </Marker>
           </div>
         ))}
+
+        {missionData.map((mission) => (
+          <div className="z-30" key={mission.id}>
+            <Marker
+              longitude={mission.longitude}
+              latitude={mission.latitude}
+              className="z-40"
+              ref={missionRef}
+            >
+              {finishedMissions.includes(mission.id) && (
+                <QuestionMark
+                  className="stroke-green-500 scale-150 z-50"
+                  onClick={() => {
+                    console.log(`${mission.name} clicked`);
+                    alert("already completed.");
+                  }}
+                />
+              )}
+
+              {clickableMissions.includes(mission.id) &&
+                !finishedMissions.includes(mission.id) && (
+                  <QuestionMark
+                    className="stroke-blue-500 scale-150 z-50"
+                    onClick={() => {
+                      console.log(`${mission.name} clicked`);
+                      setPopupVisible(true);
+                      setPopupContent({
+                        description: mission.description,
+                        name: mission.name,
+                        characterImage: mission.image,
+                        icon: mission.icon,
+                        onClose: () => {
+                          setPopupVisible(false);
+                          handleMissionClick(mission.id);
+                          incrementGoldCounter();
+                        },
+                      });
+                    }}
+                  />
+                )}
+
+              {!clickableMissions.includes(mission.id) &&
+                !finishedMissions.includes(mission.id) && (
+                  <QuestionMark
+                    className="stroke-slate-50 scale-150 z-50"
+                    onClick={() => {
+                      console.log(`${mission.name} clicked`);
+                      alert("access denied. come closer.");
+                    }}
+                  />
+                )}
+            </Marker>
+          </div>
+        ))}
       </Map>
 
       {popupVisible && popupContent && (
@@ -182,6 +273,7 @@ function MapComponent() {
             description={popupContent.description}
             name={popupContent.name}
             characterImage={popupContent.characterImage}
+            icon={popupContent.icon}
             onClose={popupContent.onClose}
           />
         </div>
