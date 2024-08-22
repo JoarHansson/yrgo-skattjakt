@@ -1,4 +1,5 @@
 import coins from "@/content/coins.png";
+import energy from "@/content/energy.png";
 import Avatar1 from "@/content/avatarer/circle1.png";
 import Avatar2 from "@/content/avatarer/circle2.png";
 import Avatar3 from "@/content/avatarer/circle3.png";
@@ -55,12 +56,17 @@ export default function Header({ goldCounter }: HeaderProps) {
           alt={usersAvatar?.name}
           className="w-[75px] h-[75px]"
         />
-
         <h2 className="">{userSettings.name}</h2>
       </div>
-      <div className="flex flex-col justify-between items-center">
+
+      <div className="flex flex-col justify-between items-center mb-4">
         <img src={coins.src} width={75} alt="coins" />
-        <div>Gold: {goldCounter} </div>
+        <div>{userSettings.coins} coins</div>
+      </div>
+
+      <div className="flex flex-col justify-between items-center">
+        <img src={energy.src} width={75} alt="coins" />
+        <div>{userSettings.energy}/4 </div>
       </div>
     </div>
   );

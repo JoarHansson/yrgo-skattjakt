@@ -1,8 +1,7 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Button from "@/content/button_ok.png";
 import Scroll from "@/content/scroll.png";
-import Pirat from "@/content/avatarer/man1.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import Monkey from "@/content/djur/monkey.png";
 import Croc from "@/content/djur/croc.png";
@@ -11,6 +10,7 @@ import Parrot from "@/content/djur/parrot.png";
 import Bomb from "@/content/bomb.png";
 import Moneybag from "@/content/moneybag.png";
 import Storyicon from "@/content/story_icon.png";
+import { UserContext } from "@/app/user-settings-provider";
 
 const imageMap = {
   Monkey: Monkey,
@@ -62,6 +62,22 @@ export default function MessagePopup({
     } else {
       onClose();
     }
+  };
+
+  // coins(/gold) and energy from context:
+  const context = useContext(UserContext);
+
+  if (!context) {
+    throw new Error(" must be used within a UserSettingsProvider");
+  }
+  const { userSettings, setUserSettings } = context;
+
+  const updateEnergyCount = () => {
+    setUserSettings((prevSettings) => ({
+      ...prevSettings,
+      energy: userSettings.energy + 1,
+      // always updates by 1?
+    }));
   };
 
   return (
