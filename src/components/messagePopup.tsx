@@ -61,6 +61,7 @@ export default function MessagePopup({
       setClickCount(2);
     } else {
       onClose();
+      updateEnergyCount();
     }
   };
 

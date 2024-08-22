@@ -55,6 +55,7 @@ export default function MissionPopup({
       setClickCount(1);
     } else {
       onClose();
+      updateCoinsCount();
     }
   };
 
@@ -69,7 +70,7 @@ export default function MissionPopup({
   const updateCoinsCount = () => {
     setUserSettings((prevSettings) => ({
       ...prevSettings,
-      coins: userSettings.coins /* +/- some value here */,
+      coins: userSettings.coins + (name === "Bomb" ? -5 : 10),
     }));
   };
 

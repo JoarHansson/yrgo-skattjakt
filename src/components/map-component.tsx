@@ -1,7 +1,8 @@
 "use client";
 
 import "mapbox-gl/dist/mapbox-gl.css";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useContext } from "react";
+import { UserContext } from "@/app/user-settings-provider";
 import Map, { GeolocateControl, Marker } from "react-map-gl";
 import { point } from "@turf/helpers";
 import distance from "@turf/distance";
@@ -39,6 +40,11 @@ function shuffleArray(array: any[]) {
 }
 
 function MapComponent() {
+  const context = useContext(UserContext);
+  if (!context) {
+    throw new Error(" must be used within a UserSettingsProvider");
+  }
+  const { userSettings, setUserSettings } = context;
   const [userLocation, setUserLocation] = useState<{
     longitude: number;
     latitude: number;
@@ -56,10 +62,6 @@ function MapComponent() {
   const [popupContent, setPopupContent] = useState<PopupContentProps | null>(
     null
   );
-
-  const incrementGoldCounter = () => {
-    setGoldCounter(goldCounter + 10);
-  };
 
   const getUserCoordinates = () => {
     geoControlRef.current?.on("geolocate", (e) => {
@@ -91,10 +93,6 @@ function MapComponent() {
   useEffect(() => {
     console.log("Mission Data:", missionDataState);
   }, [missionDataState]);
-
-  useEffect(() => {
-    console.log(`Gold Counter: ${goldCounter}`);
-  }, [goldCounter]);
 
   useEffect(() => {
     if (userLocation) {
@@ -147,7 +145,9 @@ function MapComponent() {
   };
 
   const isKarlatornetClickable = () => {
-    return true;
+    if (userSettings.energy === 4) {
+      return true;
+    } else false;
   };
 
   const { toast } = useToast();
@@ -218,7 +218,6 @@ function MapComponent() {
                         onClose: () => {
                           setPopupVisible(false);
                           handleMarkerClick(marker.id);
-                          incrementGoldCounter();
                         },
                         type: "marker",
                       });
@@ -276,7 +275,6 @@ function MapComponent() {
                         onClose: () => {
                           setPopupVisible(false);
                           handleMissionClick(mission.id);
-                          incrementGoldCounter();
                         },
                         type: "mission",
                       });
@@ -304,13 +302,13 @@ function MapComponent() {
           className="z-40"
           ref={markerRef}
         >
-          {isKarlatornetClickable() ? (
-            <img
-              src={KarlatornetLight.src}
-              width={100}
-              alt={KarlatornetData[0].name}
-              className="custom-marker-image"
-              onClick={() => {
+          <img
+            src={KarlatornetLight.src}
+            width={100}
+            alt={KarlatornetData[0].name}
+            className="custom-marker-image"
+            onClick={() => {
+              if (isKarlatornetClickable()) {
                 setPopupVisible(true);
                 setPopupContent({
                   description: KarlatornetData[0].description,
@@ -322,23 +320,17 @@ function MapComponent() {
                   onClose: () => {
                     setPopupVisible(false);
                     handleMarkerClick(KarlatornetData[0].id);
-                    incrementGoldCounter();
                   },
                   type: "Karlatornet",
                 });
-              }}
-            />
-          ) : (
-            <QuestionMark
-              className="stroke-red-50 scale-150 z-50"
-              onClick={() => {
+              } else {
                 toast({
                   description:
-                    "Du måste fortsätta samla Piratmod inna du vågar dig på Karlatornet",
+                    "Du måste fortsätta samla Piratmod innan du vågar dig på Karlatornet",
                 });
-              }}
-            />
-          )}
+              }
+            }}
+          />
         </Marker>
       </Map>
       {popupVisible && popupContent && (
