@@ -1,0 +1,34 @@
+[
+    {
+      "id": 10,
+      "name": "Bomb",
+      "description": "Bomb",
+      "image": "Croc",
+      "icon" : "Bomb",
+      "coins": -5,
+      "longitude": 11.938185,
+      "latitude": 57.705902
+    },
+    {
+      "id": 12,
+      "name": "Uppdrag",
+      "description": "Gör abc",
+      "coins": 10,
+      "image": "Croc",
+      "icon" : "Moneybag",
+      "longitude": 11.93650,
+      "latitude": 57.70498
+    },
+    {
+      "id": 14,
+      "name": "Uppdrag",
+      "description": "Gör DEF",
+      "coins": 10,
+      "image": "Croc",
+      "icon" : "Moneybag",
+      "longitude": 11.93900,
+      "latitude": 57.70812
+    }
+  ]
+  
+  
