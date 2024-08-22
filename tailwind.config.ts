@@ -22,10 +22,10 @@ const config = {
         /* colors from figma: */
 
         // backgrounds
-        introBg: "#F1C489",
+        introBg: "#FFF1DC",
         missionBg: "#FFFCB7",
         storyBg: "#BBF5F3",
-        punishmentBg: "#FF9292",
+        punishmentBg: "#FD5353",
 
         // cards
         cardDarker: "#F1C489",
