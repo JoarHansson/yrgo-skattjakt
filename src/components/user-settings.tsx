@@ -2,20 +2,40 @@
 
 import { useContext, useState } from "react";
 import { UserContext } from "@/app/user-settings-provider";
+import Avatar1 from "@/content/avatarer/avatar1.png";
+import Avatar2 from "@/content/avatarer/avatar2.png";
+import Avatar3 from "@/content/avatarer/avatar3.png";
+import Avatar4 from "@/content/avatarer/avatar4.png";
+import Avatar5 from "@/content/avatarer/avatar5.png";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { StaticImageData } from "next/image";
+import Link from "next/link";
+import ButtonSpara from "@/content/button_spara.png";
+import { Check } from "lucide-react";
 
-function UserSettings() {
+export default function UserSettings() {
   const context = useContext(UserContext);
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
+  const [userName, setUserName] = useState("");
+  const [selectedAvatar, setSelectedAvatar] = useState("Avatar1");
 
-  type avatar = {
+  type avatarType = {
     name: string;
+    image: StaticImageData;
   };
 
-  const avatars: avatar[] = [
-    { name: "avatar 1" },
-    { name: "avatar 2" },
-    { name: "avatar 3" },
+  const avatars: avatarType[] = [
+    { name: "Avatar1", image: Avatar1 },
+    { name: "Avatar2", image: Avatar2 },
+    { name: "Avatar3", image: Avatar3 },
+    { name: "Avatar4", image: Avatar4 },
+    { name: "Avatar5", image: Avatar5 },
   ];
 
   if (!context) {
@@ -27,48 +47,80 @@ function UserSettings() {
   const { userSettings, setUserSettings } = context;
 
   const updateUserName = () => {
-    setUserSettings((prevSettings) => ({ ...prevSettings, name: name }));
+    setUserSettings((prevSettings) => ({ ...prevSettings, name: userName }));
   };
 
-  const updateUserAvatar = (avatar: avatar) => {
+  const updateUserAvatar = (a: string) => {
     setUserSettings((prevSettings) => ({
       ...prevSettings,
-      avatar: avatar.name,
+      avatar: a,
     }));
   };
 
   return (
     <>
-      <div className="m-4">
-        <p>Name: {userSettings.name}</p>
+      <Carousel className="w-full max-w-xs m-auto ">
+        <CarouselContent>
+          {avatars.map((avatar, index) => (
+            <CarouselItem key={avatar.name}>
+              <div className="p-1 relative">
+                {selectedAvatar === avatar.name && (
+                  <div className="top-4 bg-accent right-4 absolute h-12 w-12 rounded-full flex items-center justify-center">
+                    <Check
+                      className="text-green-500 scale-150"
+                      strokeWidth={3}
+                    />
+                  </div>
+                )}
+
+                <Card className="bg-cardDarker">
+                  <CardContent className="flex aspect-square items-center justify-center p-6 ">
+                    <button
+                      className="text-4xl font-semibold"
+                      onClick={() => setSelectedAvatar(avatar.name)}
+                    >
+                      <img src={avatar.image.src} />
+                    </button>
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+
+      <div className="w-full max-w-xs m-auto p-1">
         <input
+          className="p-1 w-full bg-cardDarker"
           type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="enter your name..."
-          className="border-black border"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+          placeholder="Skriv ditt namn"
         />
-        <br />
+      </div>
+
+      <Link
+        href="/map"
+        onClick={() => {
+          updateUserName();
+          updateUserAvatar(selectedAvatar);
+        }}
+      >
+        <img src={ButtonSpara.src} alt="spara knapp" className="mx-auto" />
+      </Link>
+
+      <div className="m-4">
         <button onClick={updateUserName} className="underline">
           Confirm
         </button>
       </div>
+
       <div className="m-4">
+        <p>Name: {userSettings.name}</p>
         <p>Avatar: {userSettings.avatar}</p>
-        {avatars.map((avatar) => {
-          return (
-            <button
-              key={avatar.name}
-              onClick={() => updateUserAvatar(avatar)}
-              className="underline"
-            >
-              {avatar.name}
-            </button>
-          );
-        })}
       </div>
     </>
   );
 }
-
-export default UserSettings;
