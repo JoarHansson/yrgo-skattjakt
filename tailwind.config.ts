@@ -26,6 +26,7 @@ const config = {
         missionBg: "#FFFCB7",
         storyBg: "#BBF5F3",
         punishmentBg: "#FD5353",
+        finalBlack: "#02100F",
 
         // cards
         cardDarker: "#F1C489",

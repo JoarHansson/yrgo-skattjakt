@@ -4,7 +4,7 @@
     "name": "Hydrogen Dome of Sweden",
     "storyline" : "Gahhh hur har ni hittat hit? Aha, har Roger bett er om hjälp? Mitt namn är Miranda och jag har suttit på Rogers axel under många äventyr. <br> <br>  Vet ni förresten varför pirater bär en lapp för ögat? <br> <br>  Jo, det ska jag berätta för er barn! Pirater bar ofta en lapp för ögat för att behålla mörkerseendet i ett öga. Detta gjorde det möjligt för dem att snabbt anpassa sig till mörka miljöer, som när de gick ner i ett mörkt lastrum från det ljusa däcksoljuset. <br> <br>  Nog gojat från min sida, jag pratar bara goja!",
     "description": "En unik kupolformad byggnad på Lindholmen i Göteborg. Det är en experimentell och hållbar paviljong som fungerar som en mötesplats för samtal och evenemang kring hållbarhet, innovation och framtidens stadsmiljöer. <br> <br> Kupolen, som är tillverkad av trä och transparent plast, skapar en växthusliknande miljö och erbjöd utrymme för konst, kultur och samhällsdiskussioner.  <br> <br> <b>Ta ett kort på Dome of Visions för att få din belöning.</b>",
-    "congratsMessage": "bra jobbat +1 energi",
+    "congratsMessage": "Bra jobbat +1 energi",
     "image": "Parrot",
     "icon": "Storyicon",
     "longitude": 11.937872283728876,
@@ -13,10 +13,10 @@
   {
     "id": 5,
     "name": "Di-edersekvensen",
-    "storyline" : "text som beskriver",
-    "description": "Di-edersekvensen är ett konstverk på Lindholmen i Göteborg, skapat av den svenska konstnären Linda Persson. Konstverket fungerar som en påminnelse om hur vetenskap och konst kan samverka och inspirera varandra. Di-edersekvensen är ett konstverk på Lindholmen i Göteborg, skapat av den svenska konstnären Linda Persson. Konstverket fungerar som en påminnelse om hur vetenskap och konst kan samverka och inspirera varandraDi-edersekvensen är ett konstverk på Lindholmen i Göteborg, skapat av den svenska konstnären Linda Persson. Konstverket fungerar som en påminnelse om hur vetenskap och konst kan samverka och inspirera varandraDi-edersekvensen är ett konstverk på Lindholmen i Göteborg, skapat av den svenska konstnären Linda Persson. Konstverket fungerar som en påminnelse om hur vetenskap och konst kan samverka och inspirera varandra",
-    "congratsMessage": "bra jobbat +1 energi",
-    "image": "Croc",
+    "storyline" : "Urrrg den förbenade skattepiraten Seke Balderskägg har snott min tunna med salt sill. Jag träffade en sjöman som hette Håkan som sjöng något om Brännö brygga, men han ramlade i plurret. Förresten, mitt namn är Sigge säl urrrggg. Antar att Roger har nämnt mig, Jolly good.",
+    "description": "Ett konstverk på Lindholmen i Göteborg, skapat av den svenska konstnären Linda Persson. Konstverket fungerar som en påminnelse om hur vetenskap och konst kan samverka och inspirera varandra. Ta ett kort på Di-Edersekvensen för att få din belöning",
+    "congratsMessage": "Bra jobbat +1 energi",
+    "image": "Seal",
     "icon": "Storyicon",
     "longitude": 11.93819738174811,
     "latitude": 57.70490146118179
@@ -24,10 +24,10 @@
   {
     "id": 6,
     "name": "Santosskolan",
-    "storyline" : "text som beskriver",
-    "description": "Santosskolan på Lindholmen i Göteborg är en skola som fokuserar på att erbjuda en modern och innovativ utbildning för barn och ungdomar i området.Belägen i den dynamiska stadsdelen Lindholmen speglar Santosskolan denna miljö genom att integrera teknik och kreativt lärande i sin undervisning.",
-    "congratsMessage": "bra jobbat +1 energi",
-    "image": "Monkey",
+    "storyline" : "Hej där utforskare! Roger sa att ni kunde dyka upp. Mitt namn är Karmen. Visste ni att Roger och Seke var kamrater en gång i tiden? Men Balderskägg blev girig och snodde deras gemensamma skatt när Roger låg och sov. Sedan dess har de varit svurna fiender.",
+    "description": "Santosskolan på Lindholmen i Göteborg är en skola som fokuserar på att erbjuda en modern och innovativ utbildning för barn och ungdomar i området.Belägen i den dynamiska stadsdelen Lindholmen speglar Santosskolan denna miljö genom att integrera teknik och kreativt lärande i sin undervisning. Ta ett kort på Santosskolan för att få din belöning",
+    "congratsMessage": "Bra jobbat +1 energi",
+    "image": "Croc",
     "icon": "Storyicon",
     "longitude": 11.932763761626703,
     "latitude": 57.70415502242949
@@ -35,10 +35,10 @@
   {
     "id": 7,
     "name": "Backa teater",
-    "storyline" : "text som beskriver",
-    "description": "Backa teater är en konstnärligt fristående del av Göteborgs stadsteater och en av Sveriges ledande barn- och ungdomsteatrar.",
-    "congratsMessage": "bra jobbat +1 energi",
-    "image": "Parrot",
+    "storyline" : "Ohho ahha vad är detta för äventyrare jag ser. Så Roger har berättat om mig, jaha alla känner apan men apan känner ingen. Mitt namn är Clemens, men nu ska jag sluta att apa mig. Ni ska veta att Balderskägg en gång var en stolt kapten, men på havet fick han skörbjugg eftersom han inte åt eller drack ordentligt. Detta gjorde honom svag och förtvivlad, och i sin desperation stal han ett skepp och började plundra. Man ska ha respekt för havet.  ",
+    "description": "Backa teater är en konstnärligt fristående del av Göteborgs stadsteater och en av Sveriges ledande barn- och ungdomsteatrar. Ta ett kort på Backa teater för att få din belöning",
+    "congratsMessage": "Bra jobbat +1 energi",
+    "image": "Monkey",
     "icon": "Storyicon",
     "longitude": 11.936078971997121,
     "latitude": 57.70607529906216
