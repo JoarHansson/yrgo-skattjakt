@@ -1,6 +1,6 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Button from "@/content/button_ok.png";
-import Scroll from "@/content/scroll.png";
+import ScrollBig from "@/content/scroll-big.png";
 import { useContext, useState } from "react";
 
 import Monkey from "@/content/djur/monkey.png";
@@ -11,6 +11,7 @@ import Bomb from "@/content/bomb.png";
 import Moneybag from "@/content/moneybag.png";
 import Storyicon from "@/content/story_icon.png";
 import { UserContext } from "@/app/user-settings-provider";
+import CongratsMission from "./congratsMission";
 
 const imageMap = {
   Monkey: Monkey,
@@ -51,7 +52,7 @@ export default function MissionPopup({
 
   const handleButtonClick = () => {
     if (clickCount === 0) {
-      setShowDescription(false); // Change this to the desired text
+      setShowDescription(false);
       setClickCount(1);
     } else {
       onClose();
@@ -76,22 +77,34 @@ export default function MissionPopup({
 
   return (
     <div
-      className="w-screen h-screen flex flex-col justify-around items-center"
+      className="w-screen h-screen flex flex-col justify-start gap-7 py-4 items-center"
       style={{ backgroundColor: backgroundColor }}
     >
       <img src={iconImgSrc} width={100} alt="Icon" className="" />
 
-      <div className="w-5/6 h-3/6 pt-11 bg-orange-200 rounded-2xl p-8 flex flex-col justify-around items-center relative">
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-          <img src={Scroll.src} width={1050} alt="" />
-          <div className="absolute top-0 left-1/2 transform -translate-x-1/2">
-            {name}
-          </div>
+      <div className="w-5/6 h-4/6 bg-cardLight shadow-xl rounded-2xl p-8 flex justify-between pt-16 gap-5 flex-col items-center relative">
+        <div className="flex justify-center items-center absolute -top-10 ">
+          <img
+            src={ScrollBig.src}
+            width={900}
+            alt="scroll"
+            className="mx-auto max-w-sm"
+          />
+          <h1 className="text-center absolute heading">{name}</h1>
         </div>
 
-        <ScrollArea className="text-center">
-          {showDescription ? description : congratsMessage}
-        </ScrollArea>
+        <div className="text-center flex justify-center items-center h-full w-full paragraph">
+          {showDescription ? (
+            description
+          ) : (
+            <CongratsMission message={congratsMessage} name={name} />
+          )}
+        </div>
+        {name !== "Bomb" && clickCount === 0 && (
+          <p className="text-center text-lg font-bold">
+            Har du klarat uppdraget?
+          </p>
+        )}
         <img src={Button.src} onClick={handleButtonClick} className="z-50" />
       </div>
       <img

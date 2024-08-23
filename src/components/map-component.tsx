@@ -103,7 +103,7 @@ function MapComponent() {
           const from = point([userLocation.longitude, userLocation.latitude]);
           const to = point([marker.longitude, marker.latitude]);
           const dist = distance(from, to, { units: "meters" });
-          return dist < 1000 ? marker.id : -1; // Adjust the distance threshold as needed (100 meters)
+          return dist < 1000 ? marker.id : -1; // Avstånd på storyline markers
         })
         .filter((id) => id !== -1);
       setClickableMarkers(newClickableMarkers);
@@ -114,7 +114,7 @@ function MapComponent() {
           const to = point([mission.longitude, mission.latitude]);
           const dist = distance(from, to, { units: "meters" });
           console.log(`Distance to mission ${mission.id}:`, dist);
-          return dist < 1000 ? mission.id : -1; // Adjust the distance threshold as needed (100 meters)
+          return dist < 1000 ? mission.id : -1; // Avstånd på missions
         })
         .filter((id) => id !== -1);
       setClickableMissions(newClickableMissions);
@@ -326,7 +326,7 @@ function MapComponent() {
               } else {
                 toast({
                   description:
-                    "Du måste fortsätta samla Piratmod innan du vågar dig på Karlatornet",
+                    "Du måste fortsätta samla Pirat-energi innan du närmar dig Karlatornet",
                 });
               }
             }}

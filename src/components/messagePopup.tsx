@@ -1,7 +1,9 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Button from "@/content/button_ok.png";
 import Scroll from "@/content/scroll.png";
+import ScrollBig from "@/content/scroll-big.png";
 import { useContext, useState } from "react";
+import CongratsEnergyMessage from "./congratsenergyMessage";
 
 import Monkey from "@/content/djur/monkey.png";
 import Croc from "@/content/djur/croc.png";
@@ -77,26 +79,28 @@ export default function MessagePopup({
     setUserSettings((prevSettings) => ({
       ...prevSettings,
       energy: userSettings.energy + 1,
-      // always updates by 1?
     }));
   };
 
   return (
-    <div className="w-screen h-screen bg-cyan-300 flex justify-around items-center flex-col py-14 overflow-hidden">
-      <img src={iconImgSrc} width={100} alt="Icon" className="" />
+    <main className="w-screen h-screen bg-storyBg flex justify-start gap-7 items-center flex-col py-4 overflow-hidden">
+      <img src={iconImgSrc} width={80} alt="Icon" className="" />
 
-      <div className="w-5/6 h-4/6 bg-orange-200 rounded-2xl p-8 flex flex-col justify-around items-center relative">
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-          <img src={Scroll.src} width={1050} alt="" />
-          <div className="absolute top-0 left-1/2 transform -translate-x-1/2">
-            {name}
-          </div>
+      <div className="w-5/6 h-4/6 bg-cardLight shadow-xl rounded-2xl p-8 flex justify-between pt-16 gap-5 flex-col items-center relative">
+        <div className="flex justify-center items-center absolute -top-10 ">
+          <img
+            src={ScrollBig.src}
+            width={900}
+            alt="scroll"
+            className="mx-auto max-w-sm"
+          />
+          <h1 className="text-center absolute heading">{name}</h1>
         </div>
 
-        <ScrollArea>
+        <ScrollArea className="paragraph">
           {showStoryline && storyline}
           {showDescription && description}
-          {showCongrats && congratsMessage}
+          {showCongrats && <CongratsEnergyMessage message={congratsMessage} />}
         </ScrollArea>
         <img src={Button.src} onClick={handleButtonClick} className="" />
       </div>
@@ -106,6 +110,6 @@ export default function MessagePopup({
         className="absolute left-0"
         style={{ bottom: "-3%", transform: "rotate(13deg)" }}
       />
-    </div>
+    </main>
   );
 }

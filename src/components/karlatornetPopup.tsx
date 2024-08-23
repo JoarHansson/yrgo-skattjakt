@@ -3,6 +3,10 @@ import Button from "@/content/button_ok.png";
 import Scroll from "@/content/scroll.png";
 import Pirat from "@/content/avatarer/man1.png";
 import { useState } from "react";
+import ScrollBig from "@/content/scroll-big.png";
+import Link from "next/link";
+import KarlatornetLight from "@/content/tower_light.png";
+import KarlaIntro from "@/content/KarlaIntro.png";
 
 import Monkey from "@/content/djur/monkey.png";
 import Croc from "@/content/djur/croc.png";
@@ -45,40 +49,45 @@ export default function KarlatornetPopup({
   const iconImgSrc = imageMap[icon as keyof typeof imageMap].src;
 
   const [clickCount, setClickCount] = useState(0);
-  const [showDescription, setShowDescription] = useState(true);
+  const [showSecondScreen, setShowSecondScreen] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
 
   const handleButtonClick = () => {
     if (clickCount === 0) {
-      setShowDescription(false); // Change this to the desired text
+      setShowSecondScreen(false);
       setClickCount(1);
     } else {
       onClose();
     }
+    setIsVisible(true);
   };
 
   return (
-    <div className="w-screen h-screen bg-red-700 flex flex-col justify-around items-center">
-      <img src={iconImgSrc} width={100} alt="Icon" className="" />
+    <div className="w-screen h-screen bg-finalBlack flex flex-col justify-around items-center">
+      <div className="flex flex-col h-full w-full" onClick={handleButtonClick}>
+        <img className="absolute" src={KarlaIntro.src} alt="" />
+      </div>
 
-      <div className="w-5/6 h-3/6 pt-11 bg-black-200 rounded-2xl p-8 flex flex-col justify-around items-center relative">
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-          <img src={Scroll.src} width={1050} alt="" />
-          <div className="absolute top-0 left-1/2 transform -translate-x-1/2">
-            {name}
+      {isVisible && (
+        <div className="w-screen h-screen bg-finalBlack absolute flex flex-col justify-center items-center gap-4">
+          <img src={KarlatornetLight.src} width={140} alt="" />
+          <div className="w-5/6 h-4/6 bg-cardLight shadow-xl rounded-2xl p-8 flex justify-between pt-16 gap-5 flex-col items-center relative">
+            <div className="flex justify-center items-center absolute -top-10 ">
+              <img
+                src={ScrollBig.src}
+                width={900}
+                alt="scroll"
+                className="mx-auto max-w-sm"
+              />
+              <h1 className="text-center absolute heading">{name}</h1>
+            </div>
+            <ScrollArea className="paragraph">{description}</ScrollArea>
+            <Link href="/win">
+              <img src={Button.src} className="" />
+            </Link>
           </div>
         </div>
-
-        <ScrollArea className="text-center">
-          {showDescription ? description : congratsMessage}
-        </ScrollArea>
-        <img src={Button.src} onClick={handleButtonClick} className="z-50" />
-      </div>
-      <img
-        src={characterImgSrc}
-        width={200}
-        className="absolute left-0"
-        style={{ bottom: "-3%", transform: "rotate(13deg)" }}
-      />
+      )}
     </div>
   );
 }
