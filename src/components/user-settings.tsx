@@ -76,10 +76,10 @@ export default function UserSettings() {
                 <Card className="bg-cardDarker">
                   <CardContent className="flex aspect-square items-center justify-center p-6 ">
                     <button
-                      className="text-4xl font-semibold"
+                      className="text-4xl font-semibold flex justify-center items-center"
                       onClick={() => setSelectedAvatar(avatar.name)}
                     >
-                      <img src={avatar.image.src} />
+                      <img src={avatar.image.src} className="scale-75" />
                     </button>
                   </CardContent>
                 </Card>
@@ -91,9 +91,9 @@ export default function UserSettings() {
         <CarouselNext />
       </Carousel>
 
-      <div className="w-full max-w-xs m-auto p-1">
+      <div className="w-full max-w-xs m-auto p-1 ">
         <input
-          className="p-1 w-full bg-cardDarker"
+          className="p-1 w-full bg-cardDarker heading rounded-lg px-4 py-2"
           type="text"
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
@@ -102,25 +102,14 @@ export default function UserSettings() {
       </div>
 
       <Link
-        href="/map"
+        href="/instructions"
         onClick={() => {
           updateUserName();
           updateUserAvatar(selectedAvatar);
         }}
       >
-        <img src={ButtonSpara.src} alt="spara knapp" className="mx-auto" />
+        <img src={ButtonSpara.src} alt="spara knapp" className="mx-auto pt-8" />
       </Link>
-
-      <div className="m-4">
-        <button onClick={updateUserName} className="underline">
-          Confirm
-        </button>
-      </div>
-
-      <div className="m-4">
-        <p>Name: {userSettings.name}</p>
-        <p>Avatar: {userSettings.avatar}</p>
-      </div>
     </>
   );
 }

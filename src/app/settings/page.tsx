@@ -14,7 +14,7 @@ export default function SettingsPage() {
             alt="scroll"
             className="mx-auto max-w-sm absolute"
           />
-          <h1 className="text-center absolute">Välj Avatar</h1>
+          <h1 className="text-center absolute heading">Välj pirat</h1>
         </div>
 
         <UserSettings />
