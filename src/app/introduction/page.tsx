@@ -7,7 +7,7 @@ import PirateRoger from "@/content/pirate-roger.png";
 export default function IntroductionPage() {
   return (
     <>
-      <main className="w-full h-screen relative overflow-hidden">
+      <main className="w-full h-screen relative">
         <img src={FlagBlack.src} alt="svart flagga" className="m-auto pt-8 " />
 
         <div className="px-4 pt-16">
