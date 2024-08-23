@@ -68,7 +68,9 @@
   }
 }
 
-.mapboxgl-user-location-accuracy-circle {
+.mapboxgl-user-location-accuracy-circle,
+.mapboxgl-ctrl-logo,
+.mapboxgl-ctrl-bottom-left {
   display: none;
 }
 

@@ -10,7 +10,7 @@ export default function IntroductionPage() {
       <main className="w-full h-screen relative">
         <img src={FlagBlack.src} alt="svart flagga" className="m-auto pt-8 " />
 
-        <div className="px-4 pt-16">
+        <div className="px-4 pt-8">
           <div className="flex justify-center items-center relative">
             <img
               src={ScrollBig.src}

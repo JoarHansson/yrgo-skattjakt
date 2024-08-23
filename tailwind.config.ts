@@ -30,6 +30,7 @@ const config = {
         // cards
         cardDarker: "#F1C489",
         cardLight: "#FDF3E0",
+        cardMedium: "#F0DAAE",
 
         // text
         textGreen: "#3DEC00",

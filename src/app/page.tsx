@@ -3,7 +3,7 @@ import Roger from "@/content/roger-firstpage.png";
 import Sword from "@/content/sword.png";
 import ScrollBig from "@/content/scroll-big.png";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <main className="w-full h-screen relative bg-[#060F2C]">
       <div className="flex justify-between flex-col h-full">
