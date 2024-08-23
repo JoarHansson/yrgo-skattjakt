@@ -8,7 +8,6 @@ import { point } from "@turf/helpers";
 import distance from "@turf/distance";
 import markersData from "../markers.json";
 import KarlatornetData from "@/karlatornet.json";
-import QuestionMark from "./svg/question-mark";
 import MessagePopup from "../components/messagePopup";
 import Header from "./header";
 import missionData from "../missions.json";
@@ -16,6 +15,9 @@ import MissionPopup from "./missionPopup";
 import { useToast } from "@/components/ui/use-toast";
 import KarlatornetLight from "@/content/tower_light.png";
 import KarlatornetPopup from "../components/karlatornetPopup";
+import QuestionMarkWhite from "@/content/map_qmark_white.png"; // unreachable pin
+import QuestionMarkGreen from "@/content/map_qmark_green.png"; // reachable pin
+import Flag from "@/content/map_flag.png"; // completed pin
 
 interface MessagePopupProps {
   congratsMessage: string;
@@ -103,7 +105,7 @@ function MapComponent() {
           const from = point([userLocation.longitude, userLocation.latitude]);
           const to = point([marker.longitude, marker.latitude]);
           const dist = distance(from, to, { units: "meters" });
-          return dist < 1000 ? marker.id : -1; // Avstånd på storyline markers
+          return dist < 20 ? marker.id : -1; // Avstånd på storyline markers
         })
         .filter((id) => id !== -1);
       setClickableMarkers(newClickableMarkers);
@@ -114,7 +116,7 @@ function MapComponent() {
           const to = point([mission.longitude, mission.latitude]);
           const dist = distance(from, to, { units: "meters" });
           console.log(`Distance to mission ${mission.id}:`, dist);
-          return dist < 1000 ? mission.id : -1; // Avstånd på missions
+          return dist < 20 ? mission.id : -1; // Avstånd på missions
         })
         .filter((id) => id !== -1);
       setClickableMissions(newClickableMissions);
@@ -191,8 +193,9 @@ function MapComponent() {
               ref={markerRef}
             >
               {finishedMarkers.includes(marker.id) && (
-                <QuestionMark
-                  className="stroke-green-500 scale-150 z-50"
+                <img
+                  src={Flag.src}
+                  className="w-16 h-16"
                   onClick={() => {
                     console.log(`${marker.name} clicked`);
                     toast({
@@ -201,10 +204,12 @@ function MapComponent() {
                   }}
                 />
               )}
+
               {clickableMarkers.includes(marker.id) &&
                 !finishedMarkers.includes(marker.id) && (
-                  <QuestionMark
-                    className="stroke-blue-500 scale-150 z-50"
+                  <img
+                    src={QuestionMarkGreen.src}
+                    className="w-16 h-16"
                     onClick={() => {
                       console.log(`${marker.name} clicked`);
                       setPopupVisible(true);
@@ -224,10 +229,12 @@ function MapComponent() {
                     }}
                   />
                 )}
+
               {!clickableMarkers.includes(marker.id) &&
                 !finishedMarkers.includes(marker.id) && (
-                  <QuestionMark
-                    className="stroke-slate-50 scale-150 z-50"
+                  <img
+                    src={QuestionMarkWhite.src}
+                    className="w-16 h-16"
                     onClick={() => {
                       console.log(`${marker.name} clicked`);
                       toast({
@@ -239,6 +246,7 @@ function MapComponent() {
             </Marker>
           </div>
         ))}
+
         {missionDataState.map((mission) => (
           <div className="z-30" key={mission.id}>
             <Marker
@@ -248,8 +256,9 @@ function MapComponent() {
               ref={missionRef}
             >
               {finishedMissions.includes(mission.id) && (
-                <QuestionMark
-                  className="stroke-green-500 scale-150 z-50"
+                <img
+                  src={Flag.src}
+                  className="w-16 h-16"
                   onClick={() => {
                     console.log(`${mission.name} clicked`);
                     toast({
@@ -258,10 +267,12 @@ function MapComponent() {
                   }}
                 />
               )}
+
               {clickableMissions.includes(mission.id) &&
                 !finishedMissions.includes(mission.id) && (
-                  <QuestionMark
-                    className="stroke-blue-500 scale-150 z-50"
+                  <img
+                    src={QuestionMarkGreen.src}
+                    className="w-16 h-16"
                     onClick={() => {
                       console.log(`${mission.name} clicked`);
                       setPopupVisible(true);
@@ -281,10 +292,12 @@ function MapComponent() {
                     }}
                   />
                 )}
+
               {!clickableMissions.includes(mission.id) &&
                 !finishedMissions.includes(mission.id) && (
-                  <QuestionMark
-                    className="stroke-slate-50 scale-150 z-50"
+                  <img
+                    src={QuestionMarkWhite.src}
+                    className="w-16 h-16"
                     onClick={() => {
                       console.log(`${mission.name} clicked`);
                       toast({
@@ -296,6 +309,7 @@ function MapComponent() {
             </Marker>
           </div>
         ))}
+
         <Marker
           longitude={KarlatornetData[0].longitude}
           latitude={KarlatornetData[0].latitude}
