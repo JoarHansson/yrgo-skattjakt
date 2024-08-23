@@ -61,7 +61,7 @@ export default function Header({ goldCounter }: HeaderProps) {
 
       <div className="flex flex-col justify-between items-center mb-4">
         <img src={coins.src} width={75} alt="coins" />
-        <div>{userSettings.coins} coins</div>
+        <div>{userSettings.coins} guld</div>
       </div>
 
       <div className="flex flex-col justify-between items-center">

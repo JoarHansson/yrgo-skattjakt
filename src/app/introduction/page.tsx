@@ -1,12 +1,15 @@
 import Link from "next/link";
-import Sword from "@/content/sword.png";
+import Sword from "@/content/sword_new.png";
 import ScrollBig from "@/content/scroll-big.png";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import FlagBlack from "@/content/flag_black.png";
+import PirateRoger from "@/content/pirate-roger.png";
 
 export default function IntroductionPage() {
   return (
     <>
-      <main className="w-full h-screen relative">
+      <main className="w-full h-screen relative overflow-hidden">
+        <img src={FlagBlack.src} alt="svart flagga" className="m-auto pt-8 " />
+
         <div className="px-4 pt-16">
           <div className="flex justify-center items-center relative">
             <img
@@ -14,32 +17,36 @@ export default function IntroductionPage() {
               alt="scroll"
               className="mx-auto max-w-sm absolute"
             />
-            <h1 className="text-center absolute">Om piratskatten</h1>
+            <h1 className="text-center absolute heading">Introduktion</h1>
           </div>
         </div>
 
-        <div className="w-5/6 h-4/6 pb-8 bg-cardDarker mx-auto rounded-lg pt-16 px-4">
-          <ScrollArea>
-            Jag har hittat en gammal skattkarta från förr. Men jag är för gammal
-            och skruttig för att ensam hitta skatten. Den ondskefulle piraten
-            Seke Balderskägg har rövat bort min kära skattkista full av
-            piratguld. Han bor uppe i tornet och ser allt så passa er Vill ni
-            hjälpa mig? Välj hur er äventyrare skall se ut.  - Är ni redo för
-            ett äventyr? Som tur är så sitter jag på en hemlighet. Det är
-            nämligen så att i sitt giriga plundrande så har den klåfingriga
-            piraten tappat ett antal skatter över hela Lindholmen. Det är nu upp
-            till er att hitta dessa skatter. För varje skatt kommer ni att växa
-            som pirat och detta kommer öka ert mod.  - Gah en skatt kommer fylla
-            på en plupp i eran modmätare uppe i vänstra hörnet. När modmätaren
-            är full är ni redo att möta Balderskägg i tornet. Skatter och
-            äventyr väntar den nyfikne. Ta er till Lindholmen och börja
-            utforska!
-          </ScrollArea>
+        <div className="w-5/6  pb-4 bg-cardDarker mx-auto rounded-lg pt-16 px-4 paragraph ">
+          Jag har hittat en gammal skattkarta från förr. <br />
+          <br />
+          Men jag är för gammal och skruttig för att ensam hitta skatten. <br />
+          <br />
+          <span className="paragraph-bold">
+            Den ondskefulle piraten Seke Balderskägg
+          </span>{" "}
+          har rövat bort min kära skattkista full av piratguld.
+          <br />
+          <br />
+          Han bor uppe i tornet och ser allt så passa er.
+          <br />
+          <br />
+          <span className="paragraph-bold">Vill ni hjälpa mig?</span>
+          <Link href={"/settings"} className="flex flex-col items-end mt-8">
+            <img src={Sword.src} alt="sword" />
+            <p className="paragraph-bold text-right">Nästa</p>
+          </Link>
         </div>
 
-        <Link href={"/settings"} className="absolute bottom-1 right-0">
-          <img src={Sword.src} alt="sword" />
-        </Link>
+        <img
+          src={PirateRoger.src}
+          alt="Roger"
+          className="m-auto px-8 scale-75 -mt-8"
+        />
       </main>
     </>
   );

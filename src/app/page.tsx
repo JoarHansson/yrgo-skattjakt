@@ -5,7 +5,7 @@ import ScrollBig from "@/content/scroll-big.png";
 
 export default function Home() {
   return (
-    <main className="w-full h-screen relative bg-black">
+    <main className="w-full h-screen relative bg-[#060F2C]">
       <div className="flex justify-between flex-col h-full">
         <div className="p-4">
           <img

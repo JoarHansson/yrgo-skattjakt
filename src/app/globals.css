@@ -72,10 +72,10 @@
   display: none;
 }
 
-body,
+/* body,
 html {
   overflow: hidden;
-}
+} */
 
 /* font settings */
 @import url("https://fonts.googleapis.com/css2?family=Gelasio&family=Inknut+Antiqua:wght@700&display=swap");
@@ -90,21 +90,21 @@ html {
 
 /* our 5 fonts: */
 .heading {
-  @apply font-inknut text-[31px] font-bold;
+  @apply font-inknut text-[23px] font-bold;
 }
 
 .paragraph {
-  @apply font-gelasio text-[21px] font-normal;
+  @apply font-gelasio text-[16px] font-normal;
 }
 
 .paragraph-bold {
-  @apply font-gelasio text-[21px] font-semibold;
+  @apply font-gelasio text-[16px] font-semibold;
 }
 
 .instruction {
-  @apply font-gelasio text-[19px] font-semibold;
+  @apply font-gelasio text-[14px] font-semibold;
 }
 
 .instruction-large {
-  @apply font-gelasio text-[21px] font-semibold;
+  @apply font-gelasio text-[16px] font-semibold;
 }
