@@ -10,7 +10,8 @@ const gelasio = Gelasio({ subsets: ["latin"] });
 const inknut = Inknut_Antiqua({ subsets: ["latin"], weight: "700" });
 
 export const metadata: Metadata = {
-  title: "Yrgo Skattjakt",
+  title: "Balderskägg",
+  description: "Ett upptäckaräventyr på lindholmen",
 };
 
 export default function RootLayout({
