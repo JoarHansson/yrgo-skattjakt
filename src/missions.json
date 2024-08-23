@@ -15,7 +15,7 @@
       "id": 12,
       "name": "Uppdrag",
       "storyline" : "text som beskriver",
-      "description": "Ohh ahhha det kryper myror i kroppen när jag inte får klättra i träden. Vad sägs om att...   Stå på ett ben i 20 sekunder",
+      "description": "Ohh ahhha det kryper myror i kroppen när jag inte får klättra i träden. Vad sägs om att... \n \n   Stå på ett ben i 20 sekunder",
       "congratsMessage": "Bra jobbat +10 guld!",
       "coins": 10,
       "image": "Croc",
