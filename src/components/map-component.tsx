@@ -152,6 +152,14 @@ function MapComponent() {
 
   const { toast } = useToast();
 
+  useEffect(() => {
+    toast({
+      title: "Välkommen Pirat!",
+      description:
+        "Detta är din karta, klicka uppe i högra hörnet för att aktivera din position!",
+    });
+  }, []);
+
   return (
     <>
       <div
