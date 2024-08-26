@@ -18,6 +18,7 @@ import KarlatornetPopup from "../components/karlatornetPopup";
 import QuestionMarkWhite from "@/content/map_qmark_white.png"; // unreachable pin
 import QuestionMarkGreen from "@/content/map_qmark_green.png"; // reachable pin
 import Flag from "@/content/map_flag.png"; // completed pin
+import { distanceConfig } from "../../distance-config";
 
 interface MessagePopupProps {
   congratsMessage: string;
@@ -104,8 +105,8 @@ function MapComponent() {
         .map((marker) => {
           const from = point([userLocation.longitude, userLocation.latitude]);
           const to = point([marker.longitude, marker.latitude]);
-          const dist = distance(from, to, { units: "meters" });
-          return dist < 20 ? marker.id : -1; // Avstånd på storyline markers
+          const dist = distance(from, to, { units: distanceConfig.unit });
+          return dist < distanceConfig.number ? marker.id : -1; // Avstånd på storyline markers
         })
         .filter((id) => id !== -1);
       setClickableMarkers(newClickableMarkers);
@@ -114,9 +115,9 @@ function MapComponent() {
         .map((mission) => {
           const from = point([userLocation.longitude, userLocation.latitude]);
           const to = point([mission.longitude, mission.latitude]);
-          const dist = distance(from, to, { units: "meters" });
+          const dist = distance(from, to, { units: distanceConfig.unit });
           console.log(`Distance to mission ${mission.id}:`, dist);
-          return dist < 20 ? mission.id : -1; // Avstånd på missions
+          return dist < distanceConfig.number ? mission.id : -1; // Avstånd på missions
         })
         .filter((id) => id !== -1);
       setClickableMissions(newClickableMissions);
