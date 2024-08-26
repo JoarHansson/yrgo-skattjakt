@@ -7,9 +7,9 @@ Upptäck Balderskägg - ett spännande piratspel för hela familjen där du ger 
 
 #### Balderskägg was a collaborative project carried out by students at Yrgo:
 
-- Niklas and Kristoffer, [scriptwriter](https://www.yrgo.se/program/manusforfattare/) students
-- Anders, Simona and Åsa, [UX Design](https://www.yrgo.se/program/ux-designer/) students
-- [Joar](https://github.com/JoarHansson) and [William](https://github.com/wlanhage) [Web development](https://www.yrgo.se/program/webbutvecklare/) students
+- Niklas and Kristoffer - [scriptwriter](https://www.yrgo.se/program/manusforfattare/) students
+- Anders, Simona and Åsa - [UX Design](https://www.yrgo.se/program/ux-designer/) students
+- [Joar](https://github.com/JoarHansson) and [William](https://github.com/wlanhage) - [Web development](https://www.yrgo.se/program/webbutvecklare/) students
 
 
 ## Installation instructions
